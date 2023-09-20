@@ -1,0 +1,4 @@
+.fixed-height {
+    height: 30px;
+    object-fit: contain;
+}
