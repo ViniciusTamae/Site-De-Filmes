@@ -1,0 +1,41 @@
+body {
+    overflow-x: hidden;
+}
+
+p {
+    font-variant: tabular-nums;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-text {
+    flex: 1;
+}
+
+.container-margin {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.btn {
+    align-self: center;
+}
+
+.badge-leg {
+    background-color: red !important;
+}
+
+.badge-quality {
+    background-color: #0d6efd !important;
+}
+
+.film-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 66%;
+}

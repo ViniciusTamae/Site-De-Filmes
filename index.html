@@ -9,11 +9,12 @@
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles/styles-first-itens.css">
+    <link rel="stylesheet" href="styles/first-page-carousel.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body>
-
+    <!-- Navbar do site -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html">Navbar</a>
@@ -42,96 +43,141 @@
         </div>
     </nav>
 
-    <div id="carouselExampleAutoplaying" class="carousel slide " data-bs-ride="carousel">
-        <div class="carousel-inner ">
-            <div class="carousel-item active ">
-                <div class="card mb-3 " style="max-width: 750px; ">
-                    <div class="row g-0 ">
-                        <div class="col-md-4  ">
-                            <img src="images/first-page-images/first-item.jpg"
-                                class="img-fluid rounded-start w-100 h-auto fixed-height" alt="active-item">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Breaking Bad</h5>
-                                <p class="card-text">Breaking Bad é uma série de TV que segue a transformação de Walter
-                                    White, um professor de química, em um produtor de metanfetamina. A série explora
-                                    moralidade e consequências.</p>
-                                <div class="d-grid gap-2 col-6 mx-auto">
-                                    <button class="btn btn-primary" type="button">Saiba mais</button>
-                                </div>
+    <!-- Catálogo de destaques  -->
+    <section class="highlights">
+        <h2 class="visually-hidden">Destaques</h2>
+        <div class="row">
+            <!-- Primeiro -->
+            <article class="col-md-4 highlight-card">
+                <div class="card h-100">
+                    <img src="images/first-page-images/first-item-image.jpg" class="card-img-top" alt="One Piece">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <i class="far fa-clock me-auto"></i>
+                                <span>24 min</span>
+                            </div>
+                            <div class="d-flex flex-wrap">
+                                <span class="badge bg-primary me-1">Ação</span>
+                                <span class="badge bg-primary me-1">Aventura</span>
                             </div>
                         </div>
+                        <h3 class="card-title">One Piece</h3>
+                        <p class="card-text">"One Piece" é um anime/mangá japonês criado por Eiichiro Oda. A história
+                            segue Monkey D. Luffy e sua tripulação de piratas enquanto eles exploram o Grand Line em
+                            busca do tesouro lendário conhecido como One Piece. Repleto de ação, aventura, comédia e
+                            drama, a obra aborda temas de amizade e determinação.</p>
+                        <a href="#" class="btn btn-primary">Assistir</a>
+                    </div>
+                </div>
+            </article>
+            <!-- Segundo -->
+            <article class="col-md-4 highlight-card">
+                <div class="card h-100">
+                    <img src="images/first-page-images/second-item-image.jpg" class="card-img-top" alt="Oppenheimer">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <i class="far fa-clock me-auto"></i>
+                                <span>3 horas</span>
+                            </div>
+                            <div class="d-flex flex-wrap">
+                                <span class="badge bg-primary me-1">História</span>
+                                <span class="badge bg-primary me-1">Drama</span>
+                            </div>
+                        </div>
+                        <h3 class="card-title">Oppenheimer</h3>
+                        <p class="card-text">"Oppenheimer" é um filme histórico dirigido por Christopher Nolan, baseado
+                            no livro "Prometeu Americano" e estrelado por Cillian Murphy. Conta a vida de J. Robert
+                            Oppenheimer e seu papel no Projeto Manhattan, que desenvolveu as primeiras bombas atômicas.
+                            A obra aborda dilemas éticos e científicos em meio à corrida pela criação da arma
+                            devastadora.
+                        </p>
+                        <a href="#" class="btn btn-primary">Assistir</a>
+                    </div>
+
+                </div>
+            </article>
+            <!-- Terceiro -->
+            <article class="col-md-4 highlight-card">
+                <div class="card h-100">
+                    <img src="images/first-page-images/third-item-image.jpg" class="card-img-top" alt="Breaking Bad">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <i class="far fa-clock me-auto"></i>
+                                <span>45 min</span>
+                            </div>
+                            <div class="d-flex flex-wrap">
+                                <span class="badge bg-primary me-1">Drama</span>
+                                <span class="badge bg-primary me-1">Suspense</span>
+                            </div>
+                        </div>
+                        <h3 class="card-title">Breaking Bad</h3>
+                        <p class="card-text">"Breaking Bad" é uma série de televisão criada por Vince Gilligan. A trama
+                            acompanha a jornada de Walter White, um professor de química que se torna um fabricante de
+                            metanfetamina após ser diagnosticado com câncer. A série explora sua transformação no mundo
+                            do crime, abordando questões morais e as consequências de suas escolhas.</p>
+                        <a href="#" class="btn btn-primary">Assistir</a>
+                    </div>
+
+                </div>
+            </article>
+        </div>
+    </section>
+
+
+
+    <div class="container container-margin">
+        <h1 class="ml-4 fs-1 mt-5">Últimos lançamentos</h1>
+        <h1 class="ml-4 fs-2 mt-1">Filmes</h1>
+
+        <div class="row">
+            <!-- Repita essa estrutura para cada "filme" -->
+            <article class="col-lg-3 col-md-4 col-sm-6 card-horizontal mb-4">
+                <!-- Nome e classificação do filme -->
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <div class="film-title fw-bold" title="Spider Man: No Way Home">
+                        Spider Man: No Way Homeeeeeeeeeeeee
+                    </div>
+                    <div class="film-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star"></i>
                     </div>
                 </div>
 
-            </div>
-            <div class="carousel-item">
-                <div class="card mb-3" style="max-width: 750px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="images/first-page-images/second-item.webp"
-                                class="img-fluid rounded-start w-100 h-auto fixed-height" alt="second-item">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Oppenheimer</h5>
-                                <p class="card-text">Oppenheimer refere-se a J. Robert Oppenheimer, físico-chave no
-                                    desenvolvimento da bomba atômica durante a Segunda Guerra Mundial, pelo Projeto
-                                    Manhattan.</p>
-                                <div class="d-grid gap-2 col-6 mx-auto">
-                                    <button class="btn btn-primary" type="button">Saiba mais</button>
-                                </div>
-                            </div>
+                <!-- Link e imagem do filme -->
+                <a href="#" title="Spider Man: No Way Home" class="d-block h-100 position-relative">
+                    <img src="images/recente-movies/melhores-filmes-atuais-og.jpg" alt="Spider Man: No Way Home"
+                        class="w-100">
+
+                    <!-- Informações por cima da imagem -->
+                    <div class="position-absolute top-0 w-100 d-flex justify-content-between align-items-center p-1">
+                        <!-- Tempo no canto superior esquerdo com o estilo da badge -->
+                        <span class="badge bg-light-subtle text-whit">
+                            <i class="far fa-clock me-1"></i>
+                            <span>24 min</span>
+                        </span>
+
+                        <div class="d-flex">
+                            <span class="badge badge-leg me-1">LEG</span>
+                            <span class="badge badge-quality me-1">FULL HD</span>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="card mb-3" style="max-width: 750px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="images/first-page-images/third-item.jpg"
-                                class="img-fluid rounded-start w-100 h-auto fixed-height" alt="third-item">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">One Piece</h5>
-                                <p class="card-text">One Piece é um anime e mangá de aventura criado por Eiichiro Oda. A
-                                    trama segue Luffy e sua tripulação em busca do tesouro lendário para se tornar o Rei
-                                    dos Piratas.
-                                </p>
-                                <div class="d-grid gap-2 col-6 mx-auto">
-                                    <button class="btn btn-primary" type="button">Saiba mais</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </a>
+            </article>
+            <!-- Fim da estrutura de cada "filme" -->
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next " type="button" data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon " aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </div>
 
-    <h2 class="text-center">Tops Animes Da Temporada</h2>
-
+    <!-- Apenas um script é necessário porque o bundle já inclui o Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+
 </body>
 
 </html>
