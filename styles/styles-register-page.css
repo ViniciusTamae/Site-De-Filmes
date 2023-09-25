@@ -18,3 +18,8 @@ main {
 footer {
     flex-shrink: 0;
 }
+
+.align-icon {
+    display: flex;
+    align-items: center;
+}
