@@ -5,13 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
         <div class="container-fluid">
             <div class="d-flex align-items-center">
@@ -81,179 +82,137 @@
         </div>
     </nav>
 
-
-    <h1 class="text-center mt-5">
-        <strong>Tudo sobre Streaming</strong>
-    </h1>
-
-    <p class="text-center">
-        Prime Video, Netflix, Disney Plus, e mais.
-    </p>
-
-    <div class="row row-cols-1 row-cols-md-3 g-4 " style="margin: 10px;">
-        <div class="col">
-            <div class="card ">
-                <a href="Toplists/toplistSeries.html">
-                    <img src="imgRecomdacao/img netflix.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Ação</h5>
-                        <p class="card-text">Ira ser inserido uma foto com três img juntos referente ao título que ainda
-                            vai ser feito, aqui nessa parte vai ser colodado um botão e uma mine descrição sobre esssa
-                            parte.</p>
-                </a>
+    <section>
+        <h1 class="text-center mt-4">Streaming</h1>
+        <p class="text-center">Prime Video, Netflix, Disney Plus, e mais.</p>
+        <div class="row row-cols-1 row-cols-md-3 g-4" style="margin: 10px;">
+            <!-- Card Ação -->
+            <div class="col">
+                <div class="card">
+                    <a href="Toplists/toplistSeries.html">
+                        <img src="imgRecomdacao/img netflix.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Ação</h5>
+                            <p class="card-text">Conteúdo de descrição aqui.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Card Drama -->
+            <div class="col">
+                <div class="card">
+                    <a href="#">
+                        <img src="imgRecomdacao/img disney.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Drama</h5>
+                            <p class="card-text">Conteúdo de descrição aqui.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Card Comédia -->
+            <div class="col">
+                <div class="card">
+                    <a href="Toplists/toplistSeries.html">
+                        <img src="imgRecomdacao/img amazon.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Comédia</h5>
+                            <p class="card-text">Conteúdo de descrição aqui.</p>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="col ">
-        <div class="card">
-            <a href="">
-                <img src="imgRecomdacao/img disney.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Drama</h5>
-                    <p class="card-text">Ira ser inserido uma foto com três img juntos referente ao título que ainda vai
-                        ser feito, aqui nessa parte vai ser colodado um botão e uma mine descrição sobre esssa parte.
-                    </p>
-            </a>
-        </div>
-    </div>
-    </div>
-
-    <div class="col">
-        <div class="card">
-            <a href="Toplists/toplistSeries.html">
-                <img src="imgRecomdacao/img amazon.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Comédia</h5>
-                    <p class="card-text">Ira ser inserido uma foto com três img juntos referente ao título que ainda vai
-                        ser feito, aqui nessa parte vai ser colodado um botão e uma mine descrição sobre esssa parte.
-                    </p>
-            </a>
-        </div>
-    </div>
-    </div>
-    </div>
-
-
-
-    <h1 class="text-center mt-5">
-        <strong>Tudo sobre Filmes</strong>
-    </h1>
-
-    <p class="text-center">
-        As ultimas novidades do mundos animes
-    </p>
-
-    <!-- aumentar o tamanho -->
-
-
-    <div class="row row-cols-1 row-cols-md-3 g-4 " style="margin: 10px;">
-
-        <div class="col">
-            <div class="card">
-                <a href="Toplists/toplistFilme.html">
-                    <img src="imgRecomdacao/img-acao.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Ação</h5>
-                        <p class="card-text">Ira ser inserido uma foto com três img juntos referente ao título que
-                            ainda
-                            vai ser feito, aqui nessa parte vai ser colodado um botão e uma mine descrição sobre
-                            esssa
-                            parte.</p>
-                </a>
+    <!-- Tudo sobre Filmes -->
+    <section>
+        <h1 class="text-center mt-5">Tudo sobre Filmes</h1>
+        <p class="text-center">As últimas novidades do mundo dos filmes.</p>
+        <div class="row row-cols-1 row-cols-md-3 g-4" style="margin: 10px;">
+            <!-- Card Ação -->
+            <div class="col">
+                <div class="card">
+                    <a href="Toplists/toplistFilme.html">
+                        <img src="imgRecomdacao/img-acao.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Ação</h5>
+                            <p class="card-text">Conteúdo de descrição aqui.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Card Drama -->
+            <div class="col">
+                <div class="card">
+                    <a href="#">
+                        <img src="imgRecomdacao/img-dramadrama.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Drama</h5>
+                            <p class="card-text">Conteúdo de descrição aqui.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Card Comédia -->
+            <div class="col">
+                <div class="card">
+                    <a href="Toplists/toplistcomedia.html">
+                        <img src="imgRecomdacao/img comedia.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Comédia</h5>
+                            <p class="card-text">Conteúdo de descrição aqui.</p>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
+    </section>
 
-    </div>
-
-    <div class="col">
-        <div class="card">
-            <a href="">
-                <img src="imgRecomdacao/img-dramadrama.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Drama</h5>
-                    <p class="card-text">Ira ser inserido uma foto com três img juntos referente ao título que ainda vai
-                        ser feito, aqui nessa parte vai ser colodado um botão e uma mine descrição sobre esssa parte.
-                    </p>
-            </a>
-        </div>
-    </div>
-    </div>
-
-    <div class="col">
-        <div class="card">
-            <a href="Toplists/toplistcomedia.html">
-                <img src="imgRecomdacao/img comedia.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Comédia</h5>
-                    <p class="card-text">Ira ser inserido uma foto com três img juntos referente ao título que ainda vai
-                        ser feito, aqui nessa parte vai ser colodado um botão e uma mine descrição sobre esssa parte.
-                    </p>
-            </a>
-        </div>
-    </div>
-    </div>
-    </div>
-
-
-
-
-
-    <h1 class="text-center mt-5">
-        <strong>Tudo Sobre animes</strong>
-    </h1>
-
-    </p>
-
-    <p class="text-center">
-        Filmes novos, além de recomendações do site
-    </p>
-
-    <div class="row row-cols-1 row-cols-md-3 g-4 " style="margin: 10px;">
-
-        <div class="col">
-            <div class="card">
-                <a href="Toplists/toplistAnime.html">
-                    <img src="imgRecomdacao/Shounen.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Shounen</h5>
-                        <p class="card-text">Ira ser inserido uma foto com três img juntos referente ao título que
-                            ainda
-                            vai ser feito, aqui nessa parte vai ser colodado um botão e uma mine descrição sobre
-                            esssa
-                            parte.</p>
-                </a>
+    <!-- Tudo Sobre Animes -->
+    <section>
+        <h1 class="text-center mt-5">Tudo Sobre Animes</h1>
+        <p class="text-center">Filmes novos, além de recomendações do site.</p>
+        <div class="row row-cols-1 row-cols-md-3 g-4" style="margin: 10px;">
+            <!-- Card Shounen -->
+            <div class="col">
+                <div class="card">
+                    <a href="Toplists/toplistAnime.html">
+                        <img src="imgRecomdacao/Shounen.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Shounen</h5>
+                            <p class="card-text">Conteúdo de descrição aqui.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Card Drama -->
+            <div class="col">
+                <div class="card">
+                    <a href="#">
+                        <img src="imgRecomdacao/img seinen.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Drama</h5>
+                            <p class="card-text">Conteúdo de descrição aqui.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Card Comédia -->
+            <div class="col">
+                <div class="card">
+                    <a href="Toplists/toplistcomedia.html">
+                        <img src="imgRecomdacao/aaaaaa.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Comédia</h5>
+                            <p class="card-text">Conteúdo de descrição aqui.</p>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
+    </section>
 
-    </div>
-
-    <div class="col">
-        <div class="card">
-            <a href="">
-                <img src="imgRecomdacao/img seinen.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Drama</h5>
-                    <p class="card-text">Ira ser inserido uma foto com três img juntos referente ao título que ainda vai
-                        ser feito, aqui nessa parte vai ser colodado um botão e uma mine descrição sobre esssa parte.
-                    </p>
-            </a>
-        </div>
-    </div>
-    </div>
-
-    <div class="col">
-        <div class="card">
-            <a href="Toplists/toplistcomedia.html">
-                <img src="imgRecomdacao/aaaaaa.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Comédia</h5>
-                    <p class="card-text">Ira ser inserido uma foto com três img juntos referente ao título que ainda vai
-                        ser feito, aqui nessa parte vai ser colodado um botão e uma mine descrição sobre esssa parte.
-                    </p>
-            </a>
-        </div>
-    </div>
 
     <footer class="bg-dark text-center text-white">
         <div class="container p-4 pb-0">
