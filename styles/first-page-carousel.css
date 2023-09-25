@@ -16,16 +16,11 @@ p {
     flex: 1;
 }
 
-.container-margin {
-    margin-left: 2%;
-    margin-right: 2%;
-}
-
 .btn {
     align-self: center;
 }
 
-.badge-leg {
+.badge-animetype {
     background-color: red !important;
 }
 
@@ -37,5 +32,21 @@ p {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 66%;
+    max-width: 51%;
+}
+
+.overlay {
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 50%;
+    height: 50%;
+    background-color: rgba(105, 105, 105, 0.563);
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.card-horizontal:hover .overlay {
+    opacity: 1;
+    pointer-events: auto;
 }
