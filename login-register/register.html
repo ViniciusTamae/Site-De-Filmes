@@ -85,61 +85,67 @@
                         <div class="row justify-content-center">
                             <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Registre-se</p>
+                                <p class="text-center h1 text-white fw-bold mb-5 mx-1 mx-md-4 mt-4">Registre-se</p>
 
                                 <form class="mx-1 mx-md-4">
 
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <div class="me-3">
+                                        <div class="me-3 mt-4">
                                             <i class="fas fa-user fa-lg fa-fw" style="line-height: 1.5;"></i>
                                         </div>
                                         <div class="form-outline flex-fill mb-0">
-                                            <label class="form-label" for="form3Example1c">Seu nome de usuário</label>
-                                            <input type="text" id="form3Example1c" class="form-control" />
+                                            <label class="form-label text-white" for="userName">Seu nome de usuário</label>
+                                            <input type="text" id="userName" class="form-control"/>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <div class="align-icon">
+                                        <div class="align-icon" style="margin-top: 2.1em;">
                                             <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         </div>
                                         <div class="form-outline flex-fill mb-0">
-                                            <label class="form-label" for="form3Example3c">Seu e-mail</label>
-                                            <input type="email" id="form3Example3c" class="form-control" />
+                                            <label class="form-label text-white" for="emailInput">Seu e-mail</label>
+                                            <input type="email" id="emailInput" class="form-control" required/>
                                         </div>
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <div class="icon-container">
-                                            <i class="fas fa-lock fa-lg fa-fw"></i>
+                                        <div class="icon-container" style="margin-top: 2.1em;">
+                                            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         </div>
                                         <div class="form-outline flex-fill mb-0">
-                                            <label class="form-label" for="form3Example4c">Sua senha</label>
-                                            <input type="password" id="form3Example4c" class="form-control" />
+                                            <label class="form-label text-white" for="passwordInput">Sua senha</label>
+                                            <input type="password" id="passwordInput" class="form-control" />
                                         </div>
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
-                                        <div class="icon-container">
-                                            <i class="fas fa-key fa-lg fa-fw"></i>
+                                        <div class="icon-container" style="margin-top: 2.1em;">
+                                            <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                                         </div>
                                         <div class="form-outline flex-fill mb-0">
-                                            <label class="form-label" for="form3Example4cd">Repita sua senha</label>
-                                            <input type="password" id="form3Example4cd" class="form-control" />
+                                            <label class="form-label text-white" for="confirmPasswordInput">Repita sua senha</label>
+                                            <input type="password" id="confirmPasswordInput" class="form-control" />
                                         </div>
                                     </div>
 
-                                    <div class="d-flex justify-content-end mb-4">
-                                        <div class="form-check">
+                                    <div class="d-flex justify-content-start mb-4">
+                                        <div class="form-check" style="margin-left: 2.7em !important;">
                                             <input class="form-check-input" type="checkbox" id="showPassword"
                                                 onclick="togglePasswordVisibility()">
-                                            <label class="form-check-label" for="showPassword">
+                                            <label class="form-check-label text-white" for="showPassword">
                                                 Exibir senha
                                             </label>
                                         </div>
                                     </div>
 
-                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="button" class="btn btn-primary btn-lg">Register</button>
+                                    <div class="d-flex ml-2 mx-4 mb-3 mb-lg-4" style="margin-left: 2.5em !important;">
+                                        <button type="button" 
+                                        class="btn btn-outline-primary btn-lg"
+                                        id="registerBtn"
+                                        onclick="register()"
+                                        >
+                                            Registrar
+                                        </button>
                                     </div>
 
                                 </form>
@@ -157,7 +163,19 @@
             </div>
         </div>
     </div>
+    
 
+    
+    <div class="custom-alert">
+        <div 
+             class="alert alert-dismissible fade" 
+             id="alertMsg" 
+             role="alert"
+             style="width: 22em !important;"
+            >
+                <span id="alertText"></span>
+        </div>
+    </div>
 
     <footer class="mt-5 bg-dark text-center text-white">
         <div class="container p-4 pb-0">
@@ -189,6 +207,10 @@
 
 </body>
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 <script>
     function togglePasswordVisibility() {
         const passwordFields = [document.getElementById('form3Example4c'), document.getElementById('form3Example4cd')];
@@ -196,6 +218,40 @@
             field.type = field.type === 'password' ? 'text' : 'password';
         });
     }
+    function notify(msg, color) {
+        $('#alertText').text(msg);
+        $('#alertMsg').removeClass('alert-success alert-danger alert-warning').addClass(`alert-${color}`);
+        $('#alertMsg').addClass('show');
+
+        setTimeout(function() {
+            $('#alertMsg').removeClass('show');
+        }, 3000);
+    }
+
+    function register() {
+        const userName = document.getElementById('userName');
+        const emailInput = document.getElementById('emailInput');
+        const passwordInput = document.getElementById('passwordInput');
+        const confirmPasswordInput = document.getElementById('confirmPasswordInput');
+
+        if (!userName.value || !emailInput || !passwordInput || !confirmPasswordInput) {
+            return notify('Preencha todos os campos!', 'danger');
+        } 
+        else if (passwordInput !== confirmPasswordInput) {
+            return notify('As senhas não são iguais!', 'warning');            
+        }
+        return notify('Registro bem-sucedido!', 'success');
+    }
+
+
 </script>
+
+<style>
+    .custom-alert {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 8.3em;
+    }
+</style>
 
 </html>
