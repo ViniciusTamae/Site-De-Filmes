@@ -1,0 +1,40 @@
+version: "3.3"
+volumes:
+  data:
+services:
+  db:
+    container_name: movie-mysql
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    volumes:
+      - data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=movies_website   
+    networks:
+      - admin-network   
+      - php-network  
+  admin:
+    container_name: movie-admin
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - 9191:80
+    environment:
+      - PMA_ARBITRARY=1
+    networks:
+      - admin-network
+  app:
+    container_name: movie-api
+    build: ./
+    ports:
+      - 8181:80
+    volumes:
+      - ./:/var/www/html/
+    networks:
+      - php-network
+networks:
+    admin-network:
+        driver: bridge
+    php-network:
+        driver: bridge
