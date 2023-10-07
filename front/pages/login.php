@@ -39,7 +39,7 @@
                         class="img-fluid" alt="Sample image">
                 </div>
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                    <form action="/api/operations/userOperation.php" method="post">
+                    <form action="/api/operations/userOperation" method="post">
                         <!-- Email input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="nameInput">Digite seu email</label>

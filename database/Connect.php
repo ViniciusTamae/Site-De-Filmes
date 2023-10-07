@@ -1,4 +1,10 @@
 <?php 
+
+namespace Database;
+
+use Dotenv;
+use PDO;
+
 //conection database PDO
 require_once __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));

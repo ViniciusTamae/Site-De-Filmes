@@ -1,7 +1,7 @@
 <?php
 include_once("../../database/Connect.php");
-// include_once("../controllers/UserController.php");
-Class User extends Connect {
+
+Class User extends \Database\Connect {
     protected $id;
     protected $userName;
     private $email;
