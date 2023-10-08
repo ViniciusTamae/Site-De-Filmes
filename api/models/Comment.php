@@ -88,4 +88,19 @@ Class Comment extends \Database\Connect {
         }
     }
 
+    public function getUserLastComment($id) {
+        try {
+            $sql = "SELECT * FROM comments WHERE user_id = $id ORDER BY id DESC LIMIT 1;";
+
+            $result = $this->getConnection()->prepare($sql);
+            $result->execute(array());
+            $resultSearch = $result->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultSearch[0];
+
+        } catch (Exception $e) {
+            echo "Ocorreu um erro ao tentar buscar os comentarios<br> $e <br>";
+        }
+    }
+
 }

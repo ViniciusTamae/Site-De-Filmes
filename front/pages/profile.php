@@ -9,9 +9,13 @@ if (!$_SESSION['logged']) {
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
 require_once('../../api/models/User.php');
+require_once('../../api/models/Comment.php');
 
 $user = new User();
 $user = $user->getById($id);
+
+$comment = new Comment();
+$comment = $comment->getUserLastComment($id);
 
 if (is_null($user)) {
     header('Location: ./notFound');
@@ -90,10 +94,10 @@ $isCurrentUser = $_SESSION['user_id'] === $id ? true : false;
                     
 
                 </div>
-                <h3>Redes Sociais</h3>
+                <!-- <h3>Redes Sociais</h3>
                 <p><i class="fab fa-facebook"></i> Facebook</p>
                 <p><i class="fab fa-instagram"></i> Instagram</p>
-                <p><i class="fab fa-twitter"></i> Twitter</p>
+                <p><i class="fab fa-twitter"></i> Twitter</p> -->
                 <h3>Bio</h3>
                 <p><?php echo $user['bio'] ?></p>
             </div>
@@ -108,13 +112,26 @@ $isCurrentUser = $_SESSION['user_id'] === $id ? true : false;
                         
                         <span class="m-1"><?php echo $user['name'] ?></span>
                         <span class="float-end">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <?php
+
+                                $fullStars  = floor($comment['rating']);
+                                $halfStar   = ($comment['rating'] - $fullStars) >= 0.5 ? 1 : 0;
+                                $emptyStars = 5 - $fullStars - $halfStar;
+
+                                for ($i = 0; $i < $fullStars; $i++) {
+                                    echo '<i class="fas fa-star"></i>';
+                                }
+                            
+                                if ($halfStar) {
+                                    echo '<i class="fas fa-star-half-alt"></i>';
+                                }
+                            
+                                for ($i = 0; $i < $emptyStars; $i++) {
+                                    echo '<i class="far fa-star"></i>';
+                                }
+                            ?>
                         </span>
-                        <p class="mt-2">Adorei o filme Inception. Uma verdadeira obra-prima!</p>
+                        <p class="mt-2"><?php echo $comment['comment'] ?></p>
                     </div>
                 </div>
 

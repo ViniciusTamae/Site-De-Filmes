@@ -116,7 +116,7 @@ Class User extends \Database\Connect {
             
             return $result->execute();
         } catch (Exception $e) {
-            echo "Ocorreu um erro ao tentar fazer Update da capa livro<br> $e <br>";
+            echo "Ocorreu um erro ao tentar fazer Update da Imagem<br> $e <br>";
         }
     }
 
