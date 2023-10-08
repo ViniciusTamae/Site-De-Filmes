@@ -135,8 +135,8 @@
                         $duration    = formatarHora($key['duration']);
                         $description = $key['description'];
 
-                        $halfStar   = ($rating - $fullStars) >= 0.5 ? 1 : 0;
                         $fullStars  = floor($rating);
+                        $halfStar   = ($rating - $fullStars) >= 0.5 ? 1 : 0;
                         $emptyStars = 5 - $fullStars - $halfStar;
 
                         echo "
@@ -151,11 +151,11 @@
                         for ($i = 0; $i < $fullStars; $i++) {
                             echo '<i class="fas fa-star"></i>';
                         }
-
+                    
                         if ($halfStar) {
                             echo '<i class="fas fa-star-half-alt"></i>';
                         }
-
+                    
                         for ($i = 0; $i < $emptyStars; $i++) {
                             echo '<i class="far fa-star"></i>';
                         }

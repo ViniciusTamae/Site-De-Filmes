@@ -49,10 +49,12 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
             <!-- Desktop Version -->
             <div class="d-none d-lg-flex align-items-center justify-content-between flex-grow-1">
-                <form class="d-flex mx-auto" role="search" style="width: 50%;">
+                <form class="d-flex mx-auto" role="search" style="width: 50%;" 
+                    action="/api/operations/audioVisualOperation" method='post'
+                >
                     <input class="form-control me-2" type="search" placeholder="Faça sua busca aqui..."
-                        aria-label="Search" style="width: 100%;">
-                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                        aria-label="Search" style="width: 100%;" name="search">
+                    <button class="btn btn-outline-success" name="searchLike" type="submit">Buscar</button>
                 </form>
             </div>
 

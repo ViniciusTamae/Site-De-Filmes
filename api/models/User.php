@@ -62,7 +62,7 @@ Class User extends \Database\Connect {
             $userResult->bindValue(":email", $this->getEmail());
             $userResult->bindValue(":userPassword", $this->getUserPassword());
             $userResult->bindValue(":bio", $this->getBio());
-            $userResult->bindValue(":value", '/assets/imgs/profileImages/padrao.png');
+            $userResult->bindValue(":image", '/assets/imgs/profileImages/standard.png');
             
             return $userResult->execute();
         } catch (Exception $e) {

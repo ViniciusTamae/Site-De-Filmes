@@ -81,7 +81,7 @@ class AudioVisual extends \Database\Connect {
 
     public function selectLike(string $searchBook) {
         try {
-            $sql = "SELECT * FROM books WHERE book_name like '%$searchBook%'";
+            $sql = "SELECT * FROM audio_visual WHERE name like '%$searchBook%'";
 
             $sqlSearch = $this->getConnection()->prepare($sql);
             $sqlSearch->execute(array());

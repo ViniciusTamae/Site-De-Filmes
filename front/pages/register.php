@@ -58,7 +58,7 @@
                                         </div>
                                         <div class="form-outline flex-fill mb-0">
                                             <label class="form-label text-white" for="passwordInput">Sua senha</label>
-                                            <input type="password" id="passwordInput" class="form-control" name="password" />
+                                            <input type="password" id="passwordInput" class="form-control" name="password" required/>
                                         </div>
                                     </div>
 
@@ -78,7 +78,7 @@
                                         </div>
                                         <div class="form-outline flex-fill mb-0">
                                             <textarea class="form-control" id="comentario" rows="4"
-                                                placeholder="Escreva sua biografia aqui" name="bio"
+                                                placeholder="Escreva sua biografia aqui" name="bio" required
                                             ></textarea>
                                         </div>
                                     </div>

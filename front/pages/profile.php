@@ -15,6 +15,8 @@ $user = new User();
 $user = $user->getById($id);
 
 $comment = new Comment();
+$favorites = $comment->getAudioVisualCommentByUserId($id);
+
 $comment = $comment->getUserLastComment($id);
 
 if (is_null($user)) {
@@ -47,6 +49,7 @@ $isCurrentUser = $_SESSION['user_id'] === $id ? true : false;
 
     <div class="container mt-5">
         <div class="row">
+            
             <!-- Informações do perfil -->
             <div class="col-md-4">
                 <div class="text-center">
@@ -137,55 +140,40 @@ $isCurrentUser = $_SESSION['user_id'] === $id ? true : false;
 
                 <h2>Favoritos</h2>
                 <div class="row text-center">
-                    <!-- 1. Favorito  -->
-                    <div class="col-md-4">
-                        <img src="https://via.placeholder.com/400x400" alt="Filme 1"
-                            class="img-thumbnail mx-auto d-block" style="height: 400px; width: 400px;">
-                        <div class="d-flex justify-content-between">
-                            <p class="mb-0">One Piece</p>
-                            <span class="float-end">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </span>
-                        </div>
-                    </div>
 
-                    <!-- 2. Favorito  -->
+                    <?php 
+                        foreach ($favorites as $favorite) {
+                            $name = $favorite['name'];
+                            $cover  = $favorite['cover']; 
 
-                    <div class="col-md-4">
-                        <img src="https://via.placeholder.com/400x400" alt="Filme 1"
-                            class="img-thumbnail mx-auto d-block" style="height: 400px; width: 400px;">
-                        <div class="d-flex justify-content-between">
-                            <p class="mb-0">Breaking Bad</p>
-                            <span class="float-end">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </span>
-                        </div>
-                    </div>
+                            $fullStars  = floor($favorite['rating']);
+                            $halfStar   = ($favorite['rating'] - $fullStars) >= 0.5 ? 1 : 0;
+                            $emptyStars = 5 - $fullStars - $halfStar;
 
-                    <!-- 3. Favorito  -->
-
-                    <div class="col-md-4">
-                        <img src="https://via.placeholder.com/400x400" alt="Filme 1"
-                            class="img-thumbnail mx-auto d-block" style="height: 400px; width: 400px;">
-                        <div class="d-flex justify-content-between">
-                            <p class="mb-0">Boku no Piku</p>
-                            <span class="float-end">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </span>
-                        </div>
-                    </div>
+                            echo "
+                                <div class='col-md-4'>
+                                    <img src='/$cover' alt='Filme 1'
+                                        class='img-thumbnail mx-auto d-block' style='height: 400px; width: 400px;'>
+                                    <div class='d-flex justify-content-between'>
+                                        <p class='mb-0'>$name</p>
+                                        <span class='float-end'>";
+                                            for ($i = 0; $i < $fullStars; $i++) {
+                                                echo '<i class="fas fa-star"></i>';
+                                            }
+                                        
+                                            if ($halfStar) {
+                                                echo '<i class="fas fa-star-half-alt"></i>';
+                                            }
+                                        
+                                            for ($i = 0; $i < $emptyStars; $i++) {
+                                                echo '<i class="far fa-star"></i>';
+                                            }
+                                        echo "
+                                        </span>
+                                    </div>
+                                </div>";
+                        }
+                    ?>
 
                 </div>
             </div>

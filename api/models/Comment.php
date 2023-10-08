@@ -103,4 +103,24 @@ Class Comment extends \Database\Connect {
         }
     }
 
+    public function getAudioVisualCommentByUserId($id) {
+        try {
+            $sql = "SELECT av.*, c.*
+                FROM audio_visual AS av
+                INNER JOIN comments AS c ON av.id = c.audio_visual_id
+                WHERE c.rating >= 4.0 AND c.user_id = $id
+                ORDER BY RAND()
+                LIMIT 3;";
+
+            $result = $this->getConnection()->prepare($sql);
+            $result->execute(array());
+            $resultSearch = $result->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultSearch;
+
+        } catch (Exception $e) {
+            echo "Ocorreu um erro ao tentar buscar os comentarios<br> $e <br>";
+        }
+    }
+
 }
