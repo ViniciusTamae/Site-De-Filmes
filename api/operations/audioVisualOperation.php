@@ -8,6 +8,10 @@ if (isset($_POST['editBookCover'])) {
     $controller->setImg($_FILES);
     $controller->editBookCover();
 }
+else if (isset($_POST['redirect'])) {
+    $id = intval($controller->getPost()['id']);
+    header("Location: ../../front/pages/audioVisual?id=$id");
+}
 else {
     $resultSearch = $controller->searchBook(filter_input(INPUT_POST, 'palavra', FILTER_SANITIZE_STRING));
     if ($resultSearch) {

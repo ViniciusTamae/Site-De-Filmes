@@ -71,12 +71,13 @@
                         continue;
                     }
 
-                    $name = $results[0]['name'];
-                    $duration = formatarHora($results[0]['duration']);
-                    $cover = $results[0]['cover'];
-                    $type = $results[0]['type'];
+                    $id          = $results[0]['id'];
+                    $name        = $results[0]['name'];
+                    $type        = $results[0]['type'];
+                    $genre       = json_decode($results[0]['genre'], true);
+                    $cover       = $results[0]['cover'];
+                    $duration    = formatarHora($results[0]['duration']);
                     $description = $results[0]['description'];
-                    $genre = json_decode($results[0]['genre'], true);
                     
                         echo "
                         <article class='col-md-4 highlight-card'>
@@ -95,7 +96,7 @@
                                     </div>
                                     <h3 class='card-title'>$name</h3>
                                     <p class='card-text'>$description</p>
-                                    <a href='#' class='btn btn-primary'>Saiba mais</a>
+                                    <a href='/front/pages/audioVisual?id=$id' class='btn btn-primary'>Saiba mais</a>
                                 </div>
                             </div>
                         </article>
@@ -124,16 +125,18 @@
                     echo "<h1 class='ml-4 fs-2 mt-5 mb-2'>$type</h1>";
 
                     foreach ($results as $index => $key) {
-                        $name = $key['name'];
-                        $duration = formatarHora($key['duration']);
-                        $rating = $key['rating'];
-                        $cover = $key['cover'];
-                        $type = $key['type'];
-                        $description = $key['description'];
-                        $genre = json_decode($key['genre'], true);
 
-                        $fullStars = floor($rating);
-                        $halfStar = ($rating - $fullStars) >= 0.5 ? 1 : 0;
+                        $id          = $key['id'];
+                        $name        = $key['name'];
+                        $type        = $key['type'];
+                        $genre       = json_decode($key['genre'], true);
+                        $cover       = $key['cover'];
+                        $rating      = $key['rating'];
+                        $duration    = formatarHora($key['duration']);
+                        $description = $key['description'];
+
+                        $halfStar   = ($rating - $fullStars) >= 0.5 ? 1 : 0;
+                        $fullStars  = floor($rating);
                         $emptyStars = 5 - $fullStars - $halfStar;
 
                         echo "
@@ -180,9 +183,15 @@
                         echo "
                                         </div>
                                     </div>
-                                    <div class='position-absolute top-0 w-100 h-100 overlay d-flex justify-content-center align-items-center'>
-                                        <button class='btn btn-primary'>Saiba mais</button>
-                                    </div>
+                                    
+                                    <form action='/api/operations/audioVisualOperation' method='POST'>
+                                    <input type='hidden' name='id' value='$id'/>
+                                        <div class='position-absolute top-0 w-100 h-100 overlay d-flex justify-content-center align-items-center'>
+                                            <button type='submit' name='redirect' class='btn btn-primary'>
+                                                Saiba Mais
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </a>
                         </article>

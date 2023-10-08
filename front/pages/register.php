@@ -62,16 +62,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <div class="icon-container" style="margin-top: 2.1em;">
-                                            <i class="fas fa-key fa-lg me-3 fa-fw"></i>
-                                        </div>
-                                        <div class="form-outline flex-fill mb-0">
-                                            <label class="form-label text-white" for="confirmPasswordInput">Repita sua senha</label>
-                                            <input type="password" id="confirmPasswordInput" class="form-control" />
-                                        </div>
-                                    </div>
-
                                     <div class="d-flex justify-content-start mb-4">
                                         <div class="form-check" style="margin-left: 2.7em !important;">
                                             <input class="form-check-input" type="checkbox" id="showPassword"
@@ -79,6 +69,17 @@
                                             <label class="form-check-label text-white" for="showPassword">
                                                 Exibir senha
                                             </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="icon-container" style="margin-top: 2.1em;">
+                                            <i class="fas fa-paperclip fa-lg me-3 fa-fw"></i>
+                                        </div>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <textarea class="form-control" id="comentario" rows="4"
+                                                placeholder="Escreva sua biografia aqui" name="bio"
+                                            ></textarea>
                                         </div>
                                     </div>
 
@@ -152,22 +153,6 @@
             $('#alertMsg').removeClass('show');
         }, 3000);
     }
-
-    // function register() {
-    //     const userName = document.getElementById('userName');
-    //     const emailInput = document.getElementById('emailInput');
-    //     const passwordInput = document.getElementById('passwordInput');
-    //     const confirmPasswordInput = document.getElementById('confirmPasswordInput');
-
-    //     if (!userName.value || !emailInput || !passwordInput || !confirmPasswordInput) {
-    //         return notify('Preencha todos os campos!', 'danger');
-    //     } 
-    //     else if (passwordInput !== confirmPasswordInput) {
-    //         return notify('As senhas não são iguais!', 'warning');            
-    //     }
-    //     return notify('Registro bem-sucedido!', 'success');
-    // }
-
 
 </script>
 

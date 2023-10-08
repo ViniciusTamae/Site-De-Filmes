@@ -16,3 +16,7 @@ else if (isset($_POST['register'])){
 else if (isset($_POST['logout'])) {
     $userController->logout();
 }
+elseif (isset($_POST['editImage'])) {
+    $userController->setImg($_FILES);
+    $userController->editImage();
+}

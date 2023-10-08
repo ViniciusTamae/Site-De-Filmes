@@ -1,7 +1,8 @@
 <?php
 
-use Database\Connect;
-class AudioVisual extends Connect {
+include_once("../../database/Connect.php");
+
+class AudioVisual extends \Database\Connect {
 
     protected $id;
     protected $cover;
@@ -90,6 +91,21 @@ class AudioVisual extends Connect {
 
         } catch (Exception $e) {
             echo "Ocorreu um erro ao Buscar os registros." . $e;
+        }
+    }
+
+    public function getById($id) {
+        try {
+            $sql = "SELECT * FROM audio_visual where id = $id ";
+                        
+            $result = $this->getConnection()->prepare($sql);
+            $result->execute(array());
+            $resultSearch = $result->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultSearch[0];
+                    
+        } catch (Exception $e) {
+            echo "Erro ao buscar os registros <br>" . $e . '<br>';
         }
     }
 }
