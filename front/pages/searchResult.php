@@ -52,14 +52,22 @@ function formatarHora($valorFloat) {
     ?>
     
     <div class="contaienr">
+
+        <h2 class="mt-4 mb-4 text-center">Resultados de pesquisa para: <?php echo $word ?></h2>
+
         <div class="row">
                 <?php
                 foreach ($results as $result) {
 
                     $id       = $result['id'];
                     $name     = $result['name'];
+                    $genre    = json_decode($result['genre'], true);
                     $cover    = $result['cover'];
                     $duration = formatarHora($result['duration']);
+
+                    $fullStars  = floor($result['rating']);
+                    $halfStar   = ($result['rating'] - $fullStars) >= 0.5 ? 1 : 0;
+                    $emptyStars = 5 - $fullStars - $halfStar;
 
                     echo "
                         <article class='col-lg-3 col-md-4 col-sm-6 card-horizontal mb-4'>
@@ -70,17 +78,17 @@ function formatarHora($valorFloat) {
                                 <div class='film-rating'>
                         ";
 
-                        // for ($i = 0; $i < $fullStars; $i++) {
+                        for ($i = 0; $i < $fullStars; $i++) {
                             echo '<i class="fas fa-star"></i>';
-                        // }
+                        }
                     
-                        // if ($halfStar) {
+                        if ($halfStar) {
                             echo '<i class="fas fa-star-half-alt"></i>';
-                        // }
+                        }
                     
-                        // for ($i = 0; $i < $emptyStars; $i++) {
+                        for ($i = 0; $i < $emptyStars; $i++) {
                             echo '<i class="far fa-star"></i>';
-                        // }
+                        }
 
                         echo "
                                 </div>
@@ -96,11 +104,11 @@ function formatarHora($valorFloat) {
                                         <div class='d-flex'>
                         ";
 
-                        // if (isset($genre['generos']) && !empty($genre['generos'])) {
-                        //     foreach ($genre['generos'] as $genero) {
-                        //         echo '<span class="badge bg-primary me-1">' . 'azul' . '</span>';
-                        //     }
-                        // }
+                        if (isset($genre['generos']) && !empty($genre['generos'])) {
+                            foreach ($genre['generos'] as $genero) {
+                                echo '<span class="badge bg-primary me-1">' . $genero['genero'] . '</span>';
+                            }
+                        }
 
                         echo "
                                         </div>

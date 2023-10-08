@@ -89,10 +89,13 @@
                                             <i class='far fa-clock me-auto'></i>
                                             <span>$duration</span>
                                         </div>
-                                        <div class='d-flex flex-wrap'>
-                                            <span class='badge bg-primary me-1'>Ação</span>
-                                            <span class='badge bg-primary me-1'>Aventura</span>
-                                        </div>
+                                        <div class='d-flex flex-wrap'>";
+                                        if (isset($genre['generos']) && !empty($genre['generos'])) {
+                                            foreach ($genre['generos'] as $genero) {
+                                                echo '<span class="badge bg-primary me-1">' . $genero['genero'] . '</span>';
+                                            }
+                                        }
+                                        echo "</div>
                                     </div>
                                     <h3 class='card-title'>$name</h3>
                                     <p class='card-text'>$description</p>
@@ -201,6 +204,10 @@
             ?>
         </div>
     </div>
+
+    <?php
+        require_once ('front/components/footer.php');
+    ?>
 
 </body>
 
