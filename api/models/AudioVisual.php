@@ -43,21 +43,6 @@ class AudioVisual extends \Database\Connect {
             echo "Ocorreu um erro ao tentar buscar todos os registros." . $e;
         }
     }
-
-    public function updateCover(AudioVisual $audioVisual) {
-        try {
-            $sql = "UPDATE books SET book_cover=:bookCover WHERE id=:id";
-
-            $result = $this->getConnection()->prepare($sql);
-            $result->bindValue(":id", $audioVisual->getId());
-            $result->bindValue(":bookCover", $audioVisual->getCover());
-            
-            return $result->execute();
-
-        } catch (Exception $e) {
-            echo "Ocorreu um erro ao tentar fazer Update da capa livro<br> $e <br>";
-        }
-    }
     
     public function readFilter(int $limit, $type = '') {
         try {
@@ -80,9 +65,9 @@ class AudioVisual extends \Database\Connect {
         }
     }
 
-    public function selectLike(string $searchBook) {
+    public function selectLike(string $search) {
         try {
-            $sql = "SELECT * FROM audio_visual WHERE name like '%$searchBook%'";
+            $sql = "SELECT * FROM audio_visual WHERE name like '%$search%'";
 
             $sqlSearch = $this->getConnection()->prepare($sql);
             $sqlSearch->execute(array());

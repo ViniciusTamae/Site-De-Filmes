@@ -33,7 +33,7 @@ $isCurrentUser = $_SESSION['user_id'] === $id ? true : false;
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles/first-page-carousel.css">
+    <link rel="stylesheet" href="../styles/first-page-carousel.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
@@ -100,9 +100,27 @@ $isCurrentUser = $_SESSION['user_id'] === $id ? true : false;
                 <p><i class="fab fa-instagram"></i> Instagram</p>
                 <p><i class="fab fa-twitter"></i> Twitter</p> -->
                 <h3>Bio</h3>
-                <p>
+
+                <p id="bio-show">
                     <?php echo $user['bio'] ?>
                 </p>
+
+                <form action='../../api/operations/userOperation.php' method='post'>
+                    <input type="hidden" name="user_id" value='<?php echo $user['id'] ?>'>
+                    
+                    <textarea class="form-control" id="bio-textarea" rows="4" placeholder="Escreva seu comentário aqui" name="bio" style="display:none;" required
+                    ><?php echo $user['bio'] ?></textarea>
+
+                    <button type="submit" id="save-button" style="display: none;" name="editBio" class="btn btn-primary mt-2">Salvar</button>
+                </form>
+
+                <?php
+                if ($isCurrentUser) {
+                    echo '<button id="edit-button" class="btn btn-primary" onclick="editBio()">Editar Biografia</button>';
+                }
+                ?>
+
+                
             </div>
 
             <!-- Comentários e favoritos -->
@@ -189,7 +207,29 @@ $isCurrentUser = $_SESSION['user_id'] === $id ? true : false;
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
-            </script>
+        </script>
+
+        <script>
+            function editBio() {
+                // Oculta o parágrafo e o botão "Editar Biografia"
+                document.getElementById("bio-show").style.display = "none";
+                document.getElementById("edit-button").style.display = "none";
+
+                // Exibe o campo de texto (textarea) e o botão "Salvar"
+                document.getElementById("bio-textarea").style.display = "block";
+                document.getElementById("save-button").style.display = "block";
+            }
+
+            function unEdit() {
+                // Exibe o parágrafo e o botão "Editar Biografia"
+                document.getElementById("bio-show").style.display = "block";
+                document.getElementById("edit-button").style.display = "block";
+
+                // Oculta o campo de texto (textarea) e o botão "Salvar"
+                document.getElementById("bio-textarea").style.display = "none";
+                document.getElementById("save-button").style.display = "none";
+            }
+        </script>
 
 </body>
 
