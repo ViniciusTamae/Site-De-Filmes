@@ -1,10 +1,6 @@
 <?php
 
 session_start();
-if (!$_SESSION['logged']) {
-    header("Location: unauthorized");
-    die();
-}
 
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
