@@ -1,10 +1,10 @@
 <?php
-    session_start();
-    require_once("../../database/Connect.php");
-    if ($_SESSION['logged']) {
-        header("Location: notFound");
-        die();
-    }
+session_start();
+require_once("../../database/Connect.php");
+if ($_SESSION['logged']) {
+    header("Location: notFound");
+    die();
+}
 ?>
 
 <!doctype html>
@@ -28,7 +28,7 @@
 <body>
 
     <?php
-        require_once('../components/navbar.php');
+    require_once('../components/navbar.php');
     ?>
 
     <section class="mt-4 mb-5 vh-100">
@@ -50,8 +50,17 @@
                         <!-- Password input -->
                         <div class="form-outline mb-3">
                             <label class="form-label" for="passwordInput">Digite sua senha</label>
-                            <input type="password" id="passwordInput" name="password" class="form-control form-control-lg"
-                                placeholder="" />
+                            <input type="password" id="passwordInput" name="password"
+                                class="form-control form-control-lg" placeholder="" />
+                        </div>
+
+                        <div class="d-flex justify-content-start mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="showPassword"
+                                    onclick="togglePasswordVisibility()">
+                                Exibir senha
+
+                            </div>
                         </div>
 
                         <!-- Register input -->
@@ -63,10 +72,10 @@
                         </div>
 
                         <?php
-                            if (isset($_SESSION['message'])) {
-                                echo $_SESSION['message'];
-                                unset($_SESSION['message']);
-                            }
+                        if (isset($_SESSION['message'])) {
+                            echo $_SESSION['message'];
+                            unset($_SESSION['message']);
+                        }
                         ?>
 
                     </form>
@@ -76,12 +85,31 @@
     </section>
 
     <?php
-        require_once('../components/footer.php');
+    require_once('../components/footer.php');
     ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordFields = [document.getElementById('passwordInput'), document.getElementById('confirmPasswordInput')];
+            passwordFields.forEach(field => {
+                field.type = field.type === 'password' ? 'text' : 'password';
+            });
+        }
+        function notify(msg, color) {
+            $('#alertText').text(msg);
+            $('#alertMsg').removeClass('alert-success alert-danger alert-warning').addClass(`alert-${color}`);
+            $('#alertMsg').addClass('show');
+
+            setTimeout(function () {
+                $('#alertMsg').removeClass('show');
+            }, 3000);
+        }
+
+    </script>
 
 </body>
 
