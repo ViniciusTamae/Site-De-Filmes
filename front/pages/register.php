@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Registrar</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -17,65 +17,9 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <div class="d-flex align-items-center">
-                <a class="navbar-brand" href="../index.html">anicine</a>
-                <ul class="navbar-nav d-none d-lg-flex align-items-center">
-                    <li class="nav-item">
-                        <span class="mx-2">•</span>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <span class="mx-2">•</span>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../ratings.html">Avaliações</a>
-                    </li>
-                </ul>
-            </div>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
-                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
-                <!-- Desktop Version -->
-                <div class="d-none d-lg-flex align-items-center justify-content-between flex-grow-1">
-                    <form class="d-flex mx-auto" role="search" style="width: 100%;">
-                        <input class="form-control me-2" type="search" placeholder="Faça sua busca aqui..."
-                            aria-label="Search" style="width: 100%;">
-                        <button class="btn btn-outline-success" type="submit">Buscar</button>
-                    </form>
-                </div>
-
-                <!-- Mobile Version -->
-                <div class="d-lg-none">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <span class="mx-2 align-middle">•</span>
-                            <a class="nav-link d-inline" href="../index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <span class="mx-2 align-middle">•</span>
-                            <a class="nav-link d-inline" href="../ratings.html">Avaliações</a>
-                        </li>
-                        <li class="nav-item mt-2">
-                            <form class="d-flex" role="search">
-                                <input class="form-control me-2" type="search" placeholder="Faça sua busca aqui..."
-                                    aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit">Buscar</button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
-
+    <?php
+        require_once('../components/navbar.php')
+    ?>
 
     <div class="container mt-4">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -87,7 +31,7 @@
 
                                 <p class="text-center h1 text-white fw-bold mb-5 mx-1 mx-md-4 mt-4">Registre-se</p>
 
-                                <form class="mx-1 mx-md-4">
+                                <form class="mx-1 mx-md-4" action="/api/operations/userOperation.php" method="post">
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div class="me-3 mt-4">
@@ -95,7 +39,7 @@
                                         </div>
                                         <div class="form-outline flex-fill mb-0">
                                             <label class="form-label text-white" for="userName">Seu nome de usuário</label>
-                                            <input type="text" id="userName" class="form-control"/>
+                                            <input type="text" id="userName" name="userName" class="form-control"/>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
@@ -104,7 +48,7 @@
                                         </div>
                                         <div class="form-outline flex-fill mb-0">
                                             <label class="form-label text-white" for="emailInput">Seu e-mail</label>
-                                            <input type="email" id="emailInput" class="form-control" required/>
+                                            <input type="email" id="emailInput" class="form-control" name="email" required/>
                                         </div>
                                     </div>
 
@@ -114,17 +58,7 @@
                                         </div>
                                         <div class="form-outline flex-fill mb-0">
                                             <label class="form-label text-white" for="passwordInput">Sua senha</label>
-                                            <input type="password" id="passwordInput" class="form-control" />
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <div class="icon-container" style="margin-top: 2.1em;">
-                                            <i class="fas fa-key fa-lg me-3 fa-fw"></i>
-                                        </div>
-                                        <div class="form-outline flex-fill mb-0">
-                                            <label class="form-label text-white" for="confirmPasswordInput">Repita sua senha</label>
-                                            <input type="password" id="confirmPasswordInput" class="form-control" />
+                                            <input type="password" id="passwordInput" class="form-control" name="password" required/>
                                         </div>
                                     </div>
 
@@ -138,11 +72,23 @@
                                         </div>
                                     </div>
 
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="icon-container" style="margin-top: 2.1em;">
+                                            <i class="fas fa-paperclip fa-lg me-3 fa-fw"></i>
+                                        </div>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <textarea class="form-control" id="comentario" rows="4"
+                                                placeholder="Escreva sua biografia aqui" name="bio" required
+                                            ></textarea>
+                                        </div>
+                                    </div>
+
                                     <div class="d-flex ml-2 mx-4 mb-3 mb-lg-4" style="margin-left: 2.5em !important;">
-                                        <button type="button" 
-                                        class="btn btn-outline-primary btn-lg"
-                                        id="registerBtn"
-                                        onclick="register()"
+                                        <button 
+                                            class="btn btn-outline-primary btn-lg"
+                                            id="registerBtn"
+                                            name="register"
+                                            type="submit"
                                         >
                                             Registrar
                                         </button>
@@ -177,29 +123,9 @@
         </div>
     </div>
 
-    <footer class="mt-5 bg-dark text-center text-white">
-        <div class="container p-4 pb-0">
-            <section class="mb-4">
-                <!-- Twitter -->
-                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
-                        class="fab fa-twitter"></i></a>
-                <!-- Instagram -->
-                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
-                        class="fab fa-instagram"></i></a>
-                <!-- Github -->
-                <a class="btn btn-outline-light btn-floating m-1"
-                    href="https://github.com/ViniciusTamae/Site-De-Filmes/graphs/contributors" role="button"
-                    target="_blank"><i class="fab fa-github"></i></a>
-            </section>
-        </div>
-
-        <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            <a class="text-white" href="https://mdbootstrap.com/">anicine.com</a>
-            - Todos os direitos reservados © 2023 Copyright
-        </div>
-        <!-- Copyright -->
-    </footer>
+    <?php
+        require_once('../components/footer.php');
+    ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
@@ -213,7 +139,7 @@
 
 <script>
     function togglePasswordVisibility() {
-        const passwordFields = [document.getElementById('form3Example4c'), document.getElementById('form3Example4cd')];
+        const passwordFields = [document.getElementById('passwordInput'), document.getElementById('confirmPasswordInput')];
         passwordFields.forEach(field => {
             field.type = field.type === 'password' ? 'text' : 'password';
         });
@@ -227,22 +153,6 @@
             $('#alertMsg').removeClass('show');
         }, 3000);
     }
-
-    function register() {
-        const userName = document.getElementById('userName');
-        const emailInput = document.getElementById('emailInput');
-        const passwordInput = document.getElementById('passwordInput');
-        const confirmPasswordInput = document.getElementById('confirmPasswordInput');
-
-        if (!userName.value || !emailInput || !passwordInput || !confirmPasswordInput) {
-            return notify('Preencha todos os campos!', 'danger');
-        } 
-        else if (passwordInput !== confirmPasswordInput) {
-            return notify('As senhas não são iguais!', 'warning');            
-        }
-        return notify('Registro bem-sucedido!', 'success');
-    }
-
 
 </script>
 
