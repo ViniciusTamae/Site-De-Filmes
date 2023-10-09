@@ -51,9 +51,77 @@
 
 
 <body>
-    <?php
-        require_once ('front/components/navbar.php');
-    ?>
+    <nav class="navbar navbar-expand-md bg-body-tertiary sticky-top">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center">
+                <a class="navbar-brand" href="index.html">anicine</a>
+                <ul class="navbar-nav d-none d-lg-flex align-items-center">
+                    <li class="nav-item">
+                        <span class="mx-2">•</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <span class="mx-2">•</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ratings.html">Avaliações</a>
+                    </li>
+                </ul>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+                <!-- Desktop Version -->
+                <div class="d-none d-lg-flex align-items-center justify-content-between flex-grow-1">
+                    <form class="d-flex mx-auto" role="search" style="width: 50%;">
+                        <input class="form-control me-2" type="search" placeholder="Faça sua busca aqui..."
+                            aria-label="Search" style="width: 100%;">
+                        <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    </form>
+                </div>
+
+                <div class="d-none d-lg-flex align-items-center">
+                    <a href="login-register/register.html"><button
+                            class="btn btn-danger text-white ms-2">Registrar-se</button></a>
+                    <a href="login-register/login.html"><button
+                            class="btn btn-primary text-white ms-2">Login</button></a>
+                </div>
+
+                <!-- Mobile Version -->
+                <div class="d-lg-none">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <span class="mx-2 align-middle">•</span>
+                            <a class="nav-link d-inline" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <span class="mx-2 align-middle">•</span>
+                            <a class="nav-link d-inline" href="/ratings.html">Avaliações</a>
+                        </li>
+                        <li class="nav-item mt-2">
+                            <form class="d-flex" role="search">
+                                <input class="form-control me-2" type="search" placeholder="Faça sua busca aqui..."
+                                    aria-label="Search">
+                                <button class="btn btn-outline-success" type="submit">Buscar</button>
+                            </form>
+                        </li>
+                        <li class="nav-item d-flex justify-content-center mt-2">
+                            <a href="login-register/register.html"><button
+                                    class="btn btn-danger text-white ms-2">Registrar-se</button></a>
+                            <a href="login-register/login.html"><button
+                                    class="btn btn-primary text-white ms-2">Login</button></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <!-- Catálogo de destaques  -->
     <section class="highlights">
@@ -212,3 +280,7 @@
 </body>
 
 </html>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
