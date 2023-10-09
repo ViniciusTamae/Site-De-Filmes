@@ -120,4 +120,18 @@ Class User extends \Database\Connect {
         }
     }
 
+    public function updateBio(User $user){
+        try {
+            $sql = "UPDATE users SET bio=:bio WHERE id=:id";
+
+            $result = $this->getConnection()->prepare($sql);
+            $result->bindValue(":bio", $user->getBio());
+            $result->bindValue(":id", $user->getId());
+            
+            return $result->execute();
+        } catch (Exception $e) {
+            echo "Ocorreu um erro ao tentar fazer Update da Bio <br> $e <br>";
+        }
+    }
+
 }

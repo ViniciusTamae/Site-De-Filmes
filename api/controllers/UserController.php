@@ -94,7 +94,20 @@ class UserController
 
         $user->updateImg($user);
 
-        $_SESSION['msg'] = "<p id='book_success' class='container'>Livro editado com sucesso</p>";
+        header("Location: ../../front/pages/profile?id=$userId");
+        die();
+    }
+
+    public function editBio() {
+        $user = new User;
+        $postResult = $this->getPost();
+
+        $userId = $postResult['user_id'];
+        $user->setId(intval($userId));
+        $user->setBio($postResult['bio']);
+
+        $user->updateBio($user);
+
         header("Location: ../../front/pages/profile?id=$userId");
         die();
     }

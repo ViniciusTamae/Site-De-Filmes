@@ -7,6 +7,7 @@ $userController = new UserController();
 $postResult = filter_input_array(INPUT_POST);
 $userController->setPost($postResult);
 
+
 if (isset($_POST['login'])) {
     $userController->login();
 }
@@ -19,4 +20,7 @@ else if (isset($_POST['logout'])) {
 elseif (isset($_POST['editImage'])) {
     $userController->setImg($_FILES);
     $userController->editImage();
+}
+elseif (isset($_POST['editBio'])) {
+    $userController->editBio();
 }
