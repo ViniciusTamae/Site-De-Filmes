@@ -3,11 +3,6 @@ session_start();
 
 $word = filter_input(INPUT_GET, 'word', FILTER_SANITIZE_STRING);
 
-if (!$_SESSION['logged']) {
-    header("Location: unauthorized");
-    die();
-}
-
 require_once('../../api/models/AudioVisual.php');
 
 $audioVisual = new AudioVisual();

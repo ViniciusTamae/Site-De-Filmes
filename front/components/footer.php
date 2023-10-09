@@ -2,15 +2,13 @@
     <div class="container p-4 pb-0">
         <section class="mb-4">
             <!-- Twitter -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
-                    class="fab fa-twitter"></i></a>
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
             <!-- Instagram -->
             <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
                     class="fab fa-instagram"></i></a>
             <!-- Github -->
-            <a class="btn btn-outline-light btn-floating m-1"
-                href="https://github.com/ViniciusTamae/Site-De-Filmes/graphs/contributors" role="button"
-                target="_blank"><i class="fab fa-github"></i></a>
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button" target="_blank"><i
+                    class="fab fa-github"></i></a>
         </section>
     </div>
 
