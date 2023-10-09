@@ -1,11 +1,6 @@
 <?php
     session_start();
 
-    if (!$_SESSION['logged']) {
-        header("Location: unauthorized");
-        die();
-    }
-
     require_once("../../database/Connect.php");
     include_once "../../api/models/AudioVisual.php";
     include_once "../../api/models/Comment.php";
@@ -62,36 +57,45 @@
             </div>
 
             <!-- Formulario -->
-            <div class="container mt-5">
-                <h1>Deixe seu comentário:</h1>
-                <form action="/api/operations/commentOperation" method="post">
-                    
-                    <input type="hidden" name="audio_visual_id" value="<?php echo $id ?>">
-                    <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id'] ?>">
 
-                    <div class="mb-3">
-                        <label for="nome" class="form-label">Título:</label>
-                        <input type="text" class="form-control" id="nome" placeholder="Seu Título" name="title">
-                    </div>
-                    <div class="mb-3">
-                        <label for="comentario" class="form-label">Comentário:</label>
-                        <textarea class="form-control" id="comentario" rows="4"
-                            placeholder="Escreva seu comentário aqui" name="comment"
-                        ></textarea>
-                    </div>
+            <?php
+                if ($_SESSION['logged']) {
+                    echo '
+                    <div class="container mt-5">
+                        <h1>Deixe seu comentário:</h1>
+                        <form action="/api/operations/commentOperation" method="post">
+                            
+                            <input type="hidden" name="audio_visual_id" value="' . $id . '">
+                            <input type="hidden" name="user_id" value="' . $_SESSION['user_id'] . '">
 
-                    <label for="valor">Defina uma nota:</label>
-                    <select class="form-control" id="valor" name="rating">
-                        <?php
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Título:</label>
+                                <input type="text" class="form-control" id="nome" placeholder="Seu Título" name="title">
+                            </div>
+                            <div class="mb-3">
+                                <label for="comentario" class="form-label">Comentário:</label>
+                                <textarea class="form-control" id="comentario" rows="4"
+                                    placeholder="Escreva seu comentário aqui" name="comment"
+                                ></textarea>
+                            </div>
+
+                            <label for="valor">Defina uma nota:</label>
+                            <select class="form-control" id="valor" name="rating">';
+                            
                             $incremento = 0.5;
                             for ($i = 0; $i <= 5; $i += $incremento) {
                                 echo "<option value='$i'>$i</option>";
                             }
-                        ?>
-                    </select>
-                    <button type="submit" name="createComment" class="btn btn-primary mt-3">Enviar</button>
-                </form>
-            </div>
+
+                    echo '
+                            </select>
+                            <button type="submit" name="createComment" class="btn btn-primary mt-3">Enviar</button>
+                        </form>
+                    </div>';
+
+                }
+            ?>
+            
         </div>
 
         <div class="container mt-5">
