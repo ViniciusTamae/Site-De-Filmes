@@ -161,8 +161,8 @@ class AudioVisual extends \Database\Connect {
     public function create(AudioVisual $audioVisual){
         try {
             $sql = "INSERT INTO audio_visual (                   
-                  name, genre, type_id, duration, rating, description cover ) 
-                  VALUES (:name, :genre, :typeId, :duration, :rating, :description :cover )";
+                name, genre, type_id, duration, rating, description, cover ) 
+                VALUES (:name, :genre, :typeId, :duration, :rating, :description, :cover )";          
 
             $audioVisualResults = $this->getConnection()->prepare($sql);
             $audioVisualResults->bindValue(":name", $audioVisual->getName());

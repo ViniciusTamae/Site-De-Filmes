@@ -82,7 +82,7 @@
                         echo "
                         <article class='col-md-4 highlight-card'>
                             <div class='card h-100'>
-                                <img src='$cover' class='card-img-top' alt='$name'>
+                                <img src='/assets/imgs/covers/$cover' class='card-img-top' alt='$name'>
                                 <div class='card-body'>
                                     <div class='d-flex justify-content-between align-items-center'>
                                         <div class='d-flex align-items-center'>
@@ -168,7 +168,7 @@
                             </div>
                             <a href='#' class='d-block h-100 position-relative'>
                                 <div class='image-wrapper position-relative'>
-                                    <img src='$cover' alt='$name' class='w-100'>
+                                    <img src='/assets/imgs/covers/$cover' alt='$name' class='w-100'>
                                     <div class='position-absolute top-0 w-100 d-flex justify-content-between align-items-center p-1'>
                                         <span class='badge bg-light-subtle'>
                                             <i class='far fa-clock me-1'></i>

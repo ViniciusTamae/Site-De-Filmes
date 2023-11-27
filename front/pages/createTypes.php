@@ -25,7 +25,7 @@
     <div class="container mt-5">
         <h2>Gestão do Administrador</h2>
 
-        <form>
+        <form action='../../api/operations/audioVisualOperation.php' method='post' enctype='multipart/form-data'>
             <!-- Aba Criar -->
             <div class="tab-pane fade show active" id="create">
                 <div class="row">
@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <label for="imageUpload">Imagem</label>
                             <div class="input-group">
-                                <input type="file" class="form-control" id="imageUpload" accept="image/*">
+                                <input type="file" class="form-control" name='image' id="imageUpload" accept="image/*">
                                 <button class="btn btn-outline-secondary" type="button" id="clearImage"
                                     style="display: none;" onclick="removeImage()"><i class="fas fa-times"></i></button>
                             </div>
@@ -50,8 +50,8 @@
                     <select class="form-control" id="ratingSelect" name="typeId">
                         <option value="">Selecione um tipo</option>
                         <option value="1">Filme</option>
-                        <option value="2">Série</option>
-                        <option value="3">Anime</option>
+                        <option value="2">Anime</option>
+                        <option value="3">Série</option>
                     </select>
                 </div>
 
@@ -82,14 +82,14 @@
                     <select class="form-control" id="ratingSelect" name="rating">
                         <option value="">Selecione uma avaliação</option>
                         <option value="1">1 Estrela</option>
-                        <option value="2">1,5 Estrela</option>
-                        <option value="3">2 Estrelas</option>
-                        <option value="4">2,5 Estrelas</option>
-                        <option value="5">3 Estrelas</option>
-                        <option value="6">3,5 Estrelas</option>
-                        <option value="7">4 Estrelas</option>
-                        <option value="8">4,5 Estrelas</option>
-                        <option value="9">5 Estrelas</option>
+                        <option value="1.5">1,5 Estrela</option>
+                        <option value="2">2 Estrelas</option>
+                        <option value="2.5">2,5 Estrelas</option>
+                        <option value="3">3 Estrelas</option>
+                        <option value="3.5">3,5 Estrelas</option>
+                        <option value="4">4 Estrelas</option>
+                        <option value="4.5">4,5 Estrelas</option>
+                        <option value="5">5 Estrelas</option>
                     </select>
                 </div>
 

@@ -43,7 +43,7 @@ $comments = $comment->getByAudioVisualId($id);
         <div class="row">
             <div class="col-md-6">
                 <!-- Imagem do cartaz -->
-                <img src="<?php echo '../../' . $result['cover']; ?>" alt="Cartaz" class="img-fluid">
+                <img src="<?php echo '/assets/imgs/covers/' . $result['cover']; ?>" alt="Cartaz" class="img-fluid">
             </div>
             <div class="col-md-6">
                 <!-- Título -->
