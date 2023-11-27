@@ -21,7 +21,9 @@
     <?php
     require_once('../components/navbar.php');
     ?>
-    <h1>NOIS DA O CU PORRA</h1>
+
+
+
     <?php
     require_once('../components/footer.php');
     ?>
