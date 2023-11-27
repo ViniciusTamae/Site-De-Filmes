@@ -23,13 +23,13 @@
 
     function getMediaType($type) {
         if (strtolower($type) === "filmes") {
-            return "movie";
+            return 1;
         }
         else if (strtolower($type) === "animes") {
-            return "anime";
+            return 2;
         }
         else if (strtolower($type) === "séries" || strtolower($type) === "series") {
-            return "show";
+            return 3;
         }
         return "";
     }
@@ -61,7 +61,7 @@
             <h2 class="visually-hidden">Destaques</h2>
             <?php
 
-                $types = ['anime', 'movie', 'show'];
+                $types = [2, 1, 3];
 
                 foreach ($types as $type) {
                     
@@ -73,7 +73,7 @@
 
                     $id          = $results[0]['id'];
                     $name        = $results[0]['name'];
-                    $type        = $results[0]['type'];
+                    $type        = $results[0]['type_name'];
                     $genre       = json_decode($results[0]['genre'], true);
                     $cover       = $results[0]['cover'];
                     $duration    = formatarHora($results[0]['duration']);
@@ -131,7 +131,7 @@
 
                         $id          = $key['id'];
                         $name        = $key['name'];
-                        $type        = $key['type'];
+                        $type        = $key['type_name'];
                         $genre       = json_decode($key['genre'], true);
                         $cover       = $key['cover'];
                         $rating      = $key['rating'];
