@@ -113,7 +113,7 @@ function getMediaType($type)
 
     <div class="container container-margin">
         <div class="row justify-content-center">
-            <h1 class="ml-4 fs-1 mt-5 text-center">Todos os títulos</h1>
+            <h1 class="ml-4 fs-1 mt-5 mb-5 text-center">Todos os títulos</h1>
             <?php
 
             $types = ['Filmes', 'Séries', 'Animes'];
