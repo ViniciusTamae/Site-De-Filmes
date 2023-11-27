@@ -2,6 +2,7 @@
 if ($_SESSION['logged']) {
 
     $userId = $_SESSION['user_id'];
+    $admin = $_SESSION['admin'];
 
     $_SESSION['btn'] = "
         <a href='/front/pages/profile?id=$userId' style='color:white;'> <i class='fas fa-user fa-lg fa-fw' style='line-height: 1.5;'></i></a>
@@ -36,15 +37,31 @@ if ($_SESSION['logged']) {
                 <li class="nav-item">
                     <span class="mx-2">•</span>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/front/pages/editTypes">Listagem</a>
-                </li>
+
+                <?php 
+                    if ($admin == 1) {
+                        echo "
+                        <li class='nav-item'>
+                            <a class='nav-link' href='/front/pages/editTypes'>Listagem</a>
+                        </li>
+                        ";
+                    }
+                ?>
+
                 <li class="nav-item">
                     <span class="mx-2">•</span>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/front/pages/createTypes">Criar</a>
-                </li>
+
+                <?php 
+                    if ($admin == 1) {
+                        echo '
+                            <li class="nav-item">
+                                <a class="nav-link" href="/front/pages/createTypes">Criar</a>
+                            </li>
+                        ';
+                    }
+                ?>
+
             </ul>
         </div>
 

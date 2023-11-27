@@ -56,88 +56,22 @@ function getMediaType($type)
     require_once('../../front/components/navbar.php');
     ?>
 
-    <!-- Catálogo de destaques  -->
-    <section class="highlights">
-        <div class="row">
-            <h2 class="visually-hidden">Todos os títulos</h2>
-            <?php
-
-            $types = ['anime', 'movie', 'show'];
-
-            foreach ($types as $type) {
-
-                $results = $audioVisual->readFilter(0, $type);
-
-                if (empty($results)) {
-                    continue;
-                }
-
-                $id = $results[0]['id'];
-                $name = $results[0]['name'];
-                $type = $results[0]['type'];
-                $genre = json_decode($results[0]['genre'], true);
-                $cover = $results[0]['cover'];
-                $duration = formatarHora($results[0]['duration']);
-                $description = $results[0]['description'];
-
-                echo "
-                        <article class='col-md-4 highlight-card'>
-                            <div class='card h-100'>
-                                <img src='$cover' class='card-img-top' alt='$name'>
-                                <div class='card-body'>
-                                    <div class='d-flex justify-content-between align-items-center'>
-                                        <div class='d-flex align-items-center'>
-                                            <i class='far fa-clock me-auto'></i>
-                                            <span>$duration</span>
-                                        </div>
-                                        <div class='d-flex flex-wrap'>";
-                if (isset($genre['generos']) && !empty($genre['generos'])) {
-                    foreach ($genre['generos'] as $genero) {
-                        echo '<span class="badge bg-primary me-1">' . $genero['genero'] . '</span>';
-                    }
-                }
-                echo "</div>
-                                    </div>
-                                    <h3 class='card-title'>$name</h3>
-                                    <p class='card-text'>$description</p>
-                                    <a href='/front/pages/audioVisual?id=$id' class='btn btn-primary'>Saiba mais</a>
-                                </div>
-                            </div>
-                        </article>
-                        ";
-            }
-            ?>
-
-        </div>
-    </section>
-
     <div class="container container-margin">
         <div class="row justify-content-center">
             <h1 class="ml-4 fs-1 mt-5 mb-5 text-center">Todos os títulos</h1>
             <?php
 
-            $types = ['Filmes', 'Séries', 'Animes'];
+                $results = $audioVisual->readAll();
+                foreach ($results as $movie) {
 
-            foreach ($types as $type) {
-
-                $results = $audioVisual->readFilter(8, getMediaType($type));
-
-                if (empty($results)) {
-                    continue;
-                }
-
-                // echo "<h1 class='ml-4 fs-2 mt-5 mb-2'>$type</h1>";
-            
-                foreach ($results as $index => $key) {
-
-                    $id = $key['id'];
-                    $name = $key['name'];
-                    $type = $key['type'];
-                    $genre = json_decode($key['genre'], true);
-                    $cover = $key['cover'];
-                    $rating = $key['rating'];
-                    $duration = formatarHora($key['duration']);
-                    $description = $key['description'];
+                    $id = $movie['id'];
+                    $name = $movie['name'];
+                    $type = $movie['type_name'];
+                    $genre = json_decode($movie['genre'], true);
+                    $cover = $movie['cover'];
+                    $rating = $movie['rating'];
+                    $duration = formatarHora($movie['duration']);
+                    $description = $movie['description'];
 
                     $fullStars = floor($rating);
                     $halfStar = ($rating - $fullStars) >= 0.5 ? 1 : 0;
@@ -169,7 +103,7 @@ function getMediaType($type)
                             </div>
                             <a href='#' class='d-block h-100 position-relative'>
                                 <div class='image-wrapper position-relative'>
-                                    <img src='$cover' alt='$name' class='w-100'>
+                                    <img src='../../assets/imgs/covers/$cover' alt='$name' class='w-100'>
                                     <div class='position-absolute top-0 w-100 d-flex justify-content-between align-items-center p-1'>
                                         <span class='badge bg-light-subtle'>
                                             <i class='far fa-clock me-1'></i>
@@ -191,7 +125,7 @@ function getMediaType($type)
                                     <form action='/api/operations/audioVisualOperation' method='POST'>
                                     <input type='hidden' name='id' value='$id'/>
                                         <div class='position-absolute top-0 w-100 h-100 overlay d-flex justify-content-center align-items-center'>
-                                            <button type='submit' name='redirect' class='btn btn-primary mx-1'>
+                                            <button type='submit' name='redirectUpdate' class='btn btn-primary mx-1'>
                                             Editar
                                             </button>
                                             <button type='button' class='btn btn-danger mx-1' data-bs-toggle='modal' data-bs-target='#confirmDeleteModal' onclick='setItemId($id)'>
@@ -202,9 +136,33 @@ function getMediaType($type)
                                 </div>
                             </a>
                         </article>
-                        ";
+                    ";
+
+                    echo "
+                        <div class='modal fade' id='confirmDeleteModal' tabindex='-1' aria-labelledby='confirmDeleteModalLabel'
+                        aria-hidden='true'>
+                            <div class='modal-dialog modal-dialog-centered'>
+                                <div class='modal-content'>
+                                    <div class='modal-header'>
+                                        <h5 class='modal-title' id='confirmDeleteModalLabel'>Confirmar Ação</h5>
+                                        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                                    </div>
+                                    <div class='modal-body'>
+                                        <p>Tem certeza de que deseja apagar este item?</p>
+                                        <form id='deleteForm' action='../../api/operations/audioVisualOperation.php' method='POST'>
+                                            <input type='hidden' name='id' value='$id'>
+                                            <div class='modal-footer'>
+                                                <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancelar</button>
+                                                <button type='submit' class='btn btn-danger' name='delete'>Apagar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ";
+
                 }
-            }
             ?>
         </div>
     </div>
@@ -213,24 +171,7 @@ function getMediaType($type)
     require_once('../../front/components/footer.php');
     ?>
 
-    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered"> <!-- Classe adicionada aqui -->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Ação</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Tem certeza de que deseja apagar este item?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-danger" id="deleteButton">Apagar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
 </body>
 

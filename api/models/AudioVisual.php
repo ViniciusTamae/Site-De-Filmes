@@ -128,6 +128,23 @@ class AudioVisual extends \Database\Connect {
         }
     }
 
+    // Retorna todos os registros de audio_visual
+    public function readAll() {
+        try {
+            $sql = "SELECT * FROM audio_visual";
+
+            $sqlSearch = $this->getConnection()->prepare($sql);
+            $sqlSearch->execute(array());
+            $resultSearch = $sqlSearch->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultSearch;
+
+        } catch (Exception $e) {
+            echo "Ocorreu um erro ao Buscar os registros." . $e;
+        }
+    }
+
+    // Busca registros filtrados por nome
     public function selectLike(string $search) {
         try {
             $sql = "SELECT * FROM audio_visual WHERE name like '%$search%'";
@@ -176,6 +193,51 @@ class AudioVisual extends \Database\Connect {
             return $audioVisualResults->execute();
         } catch (Exception $e) {
             echo "Erro ao Inserir Registro <br>" . $e . '<br>';
+        }
+    }
+
+    public function delete(AudioVisual $audioVisual) {
+        try {
+            $sql = "DELETE FROM audio_visual WHERE id = :id";
+            $audioVisualResults = $this->getConnection()->prepare($sql);
+            $audioVisualResults->bindValue(":id", $audioVisual->getId());
+
+            return $audioVisualResults->execute();
+        } catch (Exception $e) {
+            echo "Ocorreu um erro ao tentar fazer Delete<br> $e <br>";
+        }
+    }
+
+    public function update(AudioVisual $audioVisual){
+        try {
+            $sql = "UPDATE audio_visual SET name=:name, genre=:genre, 
+            type_id=:typeId, duration=:duration, rating=:rating,
+            description=:description, cover=:cover
+            WHERE id=:id";
+            if (empty($audioVisual->getCover())) {
+                $sql = "UPDATE audio_visual SET name=:name, genre=:genre, 
+                type_id=:typeId, duration=:duration, rating=:rating,
+                description=:description
+                WHERE id=:id";
+            }
+
+            $audioVisualResults = $this->getConnection()->prepare($sql);
+            $audioVisualResults->bindValue(":name", $audioVisual->getName());
+            $audioVisualResults->bindValue(":genre", $audioVisual->getGenre());
+            $audioVisualResults->bindValue("typeId", $audioVisual->getTypeId());
+            $audioVisualResults->bindValue(":duration", $audioVisual->getDuration());
+            $audioVisualResults->bindValue(":rating", $audioVisual->getRating());
+            $audioVisualResults->bindValue(":description", $audioVisual->getDescription());
+            
+            $audioVisualResults->bindValue(":id", $audioVisual->getId());
+
+            if (!empty($audioVisual->getCover())) {
+                $audioVisualResults->bindValue(":cover", $audioVisual->getCover());
+            }
+            
+            return $audioVisualResults->execute();
+        } catch (Exception $e) {
+            echo "Ocorreu um erro ao tentar fazer Update<br> $e <br>";
         }
     }
 }

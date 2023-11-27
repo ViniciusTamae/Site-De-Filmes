@@ -1,6 +1,16 @@
 <?php
-    session_start();
+
+    require_once("../../database/Connect.php");
+    include_once "../../api/models/AudioVisual.php";
+
+    $audioVisual = new AudioVisual();
+
+    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+
+    $result = $audioVisual->getById($id);
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
@@ -8,7 +18,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de títulos</title>
+    <title>Atualizar de <?php echo $result['name'] ?></title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -30,7 +40,7 @@
         <h2>Gestão do Administrador</h2>
 
         <form action='../../api/operations/audioVisualOperation.php' method='post' enctype='multipart/form-data'>
-            <!-- Aba Criar -->
+            <input type="hidden" name="id" value="<?php echo $id ?>">
             <div class="tab-pane fade show active" id="create">
                 <div class="row">
                     <div class="col-md-6">
@@ -53,31 +63,36 @@
                     <label for="ratingSelect">Tipo</label>
                     <select class="form-control" id="ratingSelect" name="typeId">
                         <option value="">Selecione um tipo</option>
-                        <option value="1">Filme</option>
-                        <option value="2">Anime</option>
-                        <option value="3">Série</option>
+                        <option value="1" <?php if($result['type_id'] == 1) { echo "selected"; } ?> >Filme</option>
+                        <option value="2" <?php if($result['type_id'] == 2) { echo "selected"; } ?> >Anime</option>
+                        <option value="3" <?php if($result['type_id'] == 3) { echo "selected"; } ?> >Série</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="name">Nome</label>
-                    <input type="text" class="form-control" id="name" placeholder="Nome da mídia" name="name">
+                    <input type="text" value="<?php echo $result['name'] ?>" class="form-control" id="name" placeholder="Nome da mídia" name="name">
                 </div>
 
                 <div class="form-group">
                     <label for="description">Sobre</label>
-                    <textarea name="description" class="form-control" id="description" rows="3"></textarea>
+                    <textarea name="description" class="form-control" id="description" rows="3"><?php echo $result['description'] ?></textarea>
                 </div>
 
                 <div class="form-group">
+                    <?php
+                    $genre = json_decode($result['genre'], true);
+
+                    $genreString = implode(', ', array_column($genre['generos'], 'genero'));
+                    ?>
+                    
                     <label for="tags">Tags</label>
-                    <input name="genre" type="text" class="form-control" id="tags"
-                        placeholder="Tags separadas por vírgula">
+                    <input name="genre" type="text" class="form-control" id="tags" placeholder="Tags separadas por vírgula" value="<?php echo $genreString; ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="duration">Duração</label>
-                    <input name="duration" type="number" class="form-control" id="duration"
+                    <input value="<?php echo $result['duration'] ?>" name="duration" type="number" class="form-control" id="duration"
                         placeholder="Duração em minutos">
                 </div>
 
@@ -85,19 +100,21 @@
                     <label for="ratingSelect">Estrelas</label>
                     <select class="form-control" id="ratingSelect" name="rating">
                         <option value="">Selecione uma avaliação</option>
-                        <option value="1">1 Estrela</option>
-                        <option value="1.5">1,5 Estrela</option>
-                        <option value="2">2 Estrelas</option>
-                        <option value="2.5">2,5 Estrelas</option>
-                        <option value="3">3 Estrelas</option>
-                        <option value="3.5">3,5 Estrelas</option>
-                        <option value="4">4 Estrelas</option>
-                        <option value="4.5">4,5 Estrelas</option>
-                        <option value="5">5 Estrelas</option>
+
+                        <?php
+                        $ratings = [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
+
+                        foreach ($ratings as $rating) {
+                            $selected = ($result['rating'] == $rating) ? "selected" : "";
+                            echo "<option value='$rating' $selected>$rating Estrela" . (($rating != 1) ? "s" : "") . "</option>";
+                        }
+                        ?>
+
                     </select>
+
                 </div>
 
-                <button name="register" type="submit" class="btn btn-primary">Cadastrar</button>
+                <button name="edit" type="submit" class="btn btn-primary">Atualizar</button>
         </form>
 
 
