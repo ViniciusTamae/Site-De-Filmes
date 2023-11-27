@@ -39,6 +39,12 @@ if ($_SESSION['logged']) {
                 <li class="nav-item">
                     <a class="nav-link" href="/front/pages/editTypes">Listagem</a>
                 </li>
+                <li class="nav-item">
+                    <span class="mx-2">•</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/front/pages/createTypes">Criar</a>
+                </li>
             </ul>
         </div>
 
@@ -78,6 +84,10 @@ if ($_SESSION['logged']) {
                     <li class="nav-item">
                         <span class="mx-2 align-middle">•</span>
                         <a class="nav-link d-inline" href="/front/pages/editTypes">Listagem</a>
+                    </li>
+                    <li class="nav-item">
+                        <span class="mx-2 align-middle">•</span>
+                        <a class="nav-link d-inline" href="/front/pages/createTypes">Criar</a>
                     </li>
                     <li class="nav-item mt-2">
                         <form class="d-flex" role="search" action="/api/operations/audioVisualOperation" method='post'>
