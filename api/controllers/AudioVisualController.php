@@ -39,9 +39,10 @@ class AudioVisualController {
         $audioVisual->setTypeId($postResult['typeId']);
         $audioVisual->setGenre($postResult['genre']);
         $audioVisual->setDuration($postResult['duration']);
+        $audioVisual->setDescription($postResult['description']);
         $audioVisual->setRating($postResult['rating']);
         $audioVisual->setCover($cover);
-        
+
         $audioVisual->create($audioVisual);
         $_SESSION['msg'] = "<p id='book_success' class='container'>Livro cadastrado com sucesso</p>";
         header("Location: ../../frontend/page/cadastros?page=1");
