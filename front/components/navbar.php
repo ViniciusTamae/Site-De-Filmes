@@ -37,7 +37,7 @@ if ($_SESSION['logged']) {
                     <span class="mx-2">•</span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../editTypes.php">Listagem</a>
+                    <a class="nav-link" href="/front/pages/editTypes">Listagem</a>
                 </li>
             </ul>
         </div>
