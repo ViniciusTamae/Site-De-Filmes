@@ -82,6 +82,7 @@ Class User extends \Database\Connect {
 
             if ($result[0]['password'] == $this->getUserPassword()) {
                 $_SESSION['user_id'] = $result[0]['id'];
+                $_SESSION['admin'] = $result[0]['admin'];
                 return $result;
             }else {
                 return false;
