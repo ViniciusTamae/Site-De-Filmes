@@ -34,13 +34,13 @@ if ($_SESSION['logged']) {
                 <li class="nav-item">
                     <a class="nav-link" href="/">Home</a>
                 </li>
-                <li class="nav-item">
-                    <span class="mx-2">•</span>
-                </li>
 
                 <?php 
                     if ($admin == 1) {
                         echo "
+                        <li class='nav-item'>
+                            <span class='mx-2'>•</span>
+                        </li>
                         <li class='nav-item'>
                             <a class='nav-link' href='/front/pages/editTypes'>Listagem</a>
                         </li>
@@ -48,13 +48,12 @@ if ($_SESSION['logged']) {
                     }
                 ?>
 
-                <li class="nav-item">
-                    <span class="mx-2">•</span>
-                </li>
-
                 <?php 
                     if ($admin == 1) {
                         echo '
+                            <li class="nav-item">
+                                <span class="mx-2">•</span>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/front/pages/createTypes">Criar</a>
                             </li>
