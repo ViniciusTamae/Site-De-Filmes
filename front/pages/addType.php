@@ -14,20 +14,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <style>
-        .film-rating .fa-star {
-            color: orange;
-            cursor: pointer;
-        }
-
-        .film-rating .fa-star.checked {
-            color: orange;
-        }
-
-        .film-rating .fa-star:not(.checked) {
-            color: white;
-        }
-    </style>
 </head>
 
 <body>
@@ -36,77 +22,109 @@
     require_once('../components/navbar.php');
     ?>
 
-    <html lang="pt-br">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cadastro de Mídia</title>
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
-        <style>
-            .film-rating .fa-star {
-                color: transparent;
-                /* Inicia transparente */
-                cursor: pointer;
-                -webkit-text-stroke: 1px grey;
-                /* Borda cinza */
-            }
-
-            .film-rating .fa-star.checked {
-                color: white;
-                /* Fica branca quando clicada */
-                -webkit-text-stroke: 0;
-                /* Remove a borda quando clicada */
-            }
-        </style>
-    </head>
-
-    <body>
-        <div class="form-group">
-            <label>Avaliação</label>
-            <div class="film-rating">
-                <i class="fas fa-star" onclick="setRating(this, 1)"></i>
-                <i class="fas fa-star" onclick="setRating(this, 2)"></i>
-                <i class="fas fa-star" onclick="setRating(this, 3)"></i>
-                <i class="fas fa-star" onclick="setRating(this, 4)"></i>
-                <i class="fas fa-star" onclick="setRating(this, 5)"></i>
+    <div class="container mt-5">
+        <h2>Cadastro de Filmes, Séries e Animes</h2>
+        <form>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="imageUpload">Imagem</label>
+                        <div class="input-group">
+                            <input type="file" class="form-control" id="imageUpload" accept="image/*">
+                            <button class="btn btn-outline-secondary" type="button" id="clearImage"
+                                style="display: none;" onclick="removeImage()"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img id="imagePreview" alt="Pré-visualização da imagem"
+                        style="display: none; width: 100%; max-width: 400px; height: auto;">
+                </div>
             </div>
-            <input type="hidden" id="rating" name="rating" value="0">
-        </div>
 
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+            <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" class="form-control" id="name" placeholder="Nome da mídia">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Sobre</label>
+                <textarea class="form-control" id="description" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="tags">Tags</label>
+                <input type="text" class="form-control" id="tags" placeholder="Tags separadas por vírgula">
+            </div>
+
+            <div class="form-group">
+                <label for="duration">Duração</label>
+                <input type="text" class="form-control" id="duration" placeholder="Duração em minutos">
+            </div>
+
+            <div class="form-group">
+                <label for="ratingSelect">Estrelas</label>
+                <select class="form-control" id="ratingSelect" name="rating">
+                    <option value="">Selecione uma avaliação</option>
+                    <option value="1">1 Estrela</option>
+                    <option value="2">2 Estrelas</option>
+                    <option value="3">3 Estrelas</option>
+                    <option value="4">4 Estrelas</option>
+                    <option value="5">5 Estrelas</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
         </form>
-        </div>
+    </div>
 
+    <?php
+    require_once('../components/footer.php');
+    ?>
 
+    <script>
+        document.getElementById("imageUpload").addEventListener("change", function (event) {
+            var file = event.target.files[0];
 
+            if (file && file.type.startsWith('image/')) {
+                var oFReader = new FileReader();
+                oFReader.readAsDataURL(file);
 
-        <?php
-        require_once('../components/footer.php');
-        ?>
+                oFReader.onload = function (oFREvent) {
+                    var preview = document.getElementById("imagePreview");
+                    preview.src = oFREvent.target.result;
+                    preview.style.display = "block";
 
-        <script>
-            function setRating(star, rating) {
-                var stars = document.querySelectorAll('.film-rating .fa-star');
-                document.getElementById('rating').value = rating;
-                stars.forEach(function (star, index) {
-                    if (index < rating) {
-                        star.classList.add('checked');
-                    } else {
-                        star.classList.remove('checked');
-                    }
-                });
+                    document.getElementById('clearImage').style.display = 'block';
+                };
+            } else {
+                alert('Por favor, selecione um arquivo de imagem válido.');
+                event.target.value = "";
+                document.getElementById('clearImage').style.display = 'none'; // Esconde o botão
             }
-        </script>
+        });
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-            crossorigin="anonymous"></script>
+        function removeImage() {
+            var preview = document.getElementById("imagePreview");
+            preview.src = "";
+            preview.style.display = "none";
 
-    </body>
+            var fileInput = document.getElementById("imageUpload");
+            fileInput.value = "";
 
-    </html>
+            var clearButton = document.getElementById('clearImage');
+            clearButton.style.display = 'none';
+        }
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
