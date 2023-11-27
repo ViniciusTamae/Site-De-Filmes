@@ -21,8 +21,48 @@ class AudioVisualController {
         return $this->img;
     }
 
-    public function getAudioVisual() {
-        return 'ai caramba';
+    public function register(){
+        $cover = "scapa.jpg";
+
+        //getting the uploaded FILE post
+        $img = $this->getImg();
+        if (isset($img['image']['name']) && !empty($img['image']['name'])) {
+            $target = $_SERVER['DOCUMENT_ROOT'] . "/assets/imgs/covers/" . basename($img['image']['name']);
+
+            // Verifique a extensão do arquivo
+            $fileExtension = pathinfo($target, PATHINFO_EXTENSION);
+
+            if ($fileExtension === 'webp') {
+
+                $target = preg_replace('/\.(webp)$/', '.png', $target);
+            }
+
+            move_uploaded_file($img['image']['tmp_name'], $target);
+            $cover = $img['image']['name'];
+        }
+        
+        $audioVisual = new AudioVisual;
+        $postResult = $this->getPost();
+
+        $genres = array_map('trim', explode(',', $postResult['genre']));
+        $genreResult = ['generos' => []];
+        
+        foreach ($genres as $genre) {
+            $genreResult['generos'][] = ['genero' => $genre];
+        }
+
+        $audioVisual->setName($postResult['name']);
+        $audioVisual->setTypeId($postResult['typeId']);
+        $audioVisual->setGenre(json_encode($genreResult));
+        $audioVisual->setDuration($postResult['duration']);
+        $audioVisual->setDescription($postResult['description']);
+        $audioVisual->setRating($postResult['rating']);
+        $audioVisual->setCover($cover);
+
+        $audioVisual->create($audioVisual);
+        header("Location: ../../");
+        die();
+        
     }
 
 }

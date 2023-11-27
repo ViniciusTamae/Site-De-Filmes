@@ -1,18 +1,18 @@
 <?php
-    session_start();
+session_start();
 
-    require_once("../../database/Connect.php");
-    include_once "../../api/models/AudioVisual.php";
-    include_once "../../api/models/Comment.php";
+require_once("../../database/Connect.php");
+include_once "../../api/models/AudioVisual.php";
+include_once "../../api/models/Comment.php";
 
-    $audioVisual = new AudioVisual();
-    $comment = new Comment();
+$audioVisual = new AudioVisual();
+$comment = new Comment();
 
-    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
-    $result = $audioVisual->getById($id);
+$result = $audioVisual->getById($id);
 
-    $comments = $comment->getByAudioVisualId($id);
+$comments = $comment->getByAudioVisualId($id);
 ?>
 
 <!DOCTYPE html>
@@ -21,8 +21,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cartaz Bootstrap com Comentários</title>
-    <!-- Inclua os arquivos CSS e JS do Bootstrap -->
+    <title>Comentários</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -35,20 +34,22 @@
 </head>
 
 <body>
-    
-        <?php
-            require_once('../components/navbar.php');
-        ?>
+
+    <?php
+    require_once('../components/navbar.php');
+    ?>
 
     <div class="container border">
         <div class="row">
             <div class="col-md-6">
                 <!-- Imagem do cartaz -->
-                <img src="<?php echo '../../'.$result['cover']; ?>" alt="Cartaz" class="img-fluid">
+                <img src="<?php echo '/assets/imgs/covers/' . $result['cover']; ?>" alt="Cartaz" class="img-fluid">
             </div>
             <div class="col-md-6">
                 <!-- Título -->
-                <h1><?php echo $result['name']; ?></h1>
+                <h1>
+                    <?php echo $result['name']; ?>
+                </h1>
                 <!-- Descrição -->
                 <p class="lh-base">
                     <?php echo $result['description']; ?>
@@ -59,8 +60,8 @@
             <!-- Formulario -->
 
             <?php
-                if ($_SESSION['logged']) {
-                    echo '
+            if ($_SESSION['logged']) {
+                echo '
                     <div class="container mt-5">
                         <h1>Deixe seu comentário:</h1>
                         <form action="/api/operations/commentOperation" method="post">
@@ -81,40 +82,40 @@
 
                             <label for="valor">Defina uma nota:</label>
                             <select class="form-control" id="valor" name="rating">';
-                            
-                            $incremento = 0.5;
-                            for ($i = 0; $i <= 5; $i += $incremento) {
-                                echo "<option value='$i'>$i</option>";
-                            }
 
-                    echo '
+                $incremento = 0.5;
+                for ($i = 0; $i <= 5; $i += $incremento) {
+                    echo "<option value='$i'>$i</option>";
+                }
+
+                echo '
                             </select>
                             <button type="submit" name="createComment" class="btn btn-primary mt-3">Enviar</button>
                         </form>
                     </div>';
 
-                }
+            }
             ?>
-            
+
         </div>
 
         <div class="container mt-5">
             <h1>Comentários</h1>
             <?php
-                foreach ($comments as $data) {
+            foreach ($comments as $data) {
 
-                    $name = $data['name'];
-                    $title = $data['title'];
-                    $comment = $data['comment'];
-                    $img = $data['image'];
-                    $rating = $data['rating'];
-                    $userId = $data['user_id'];
+                $name = $data['name'];
+                $title = $data['title'];
+                $comment = $data['comment'];
+                $img = $data['image'];
+                $rating = $data['rating'];
+                $userId = $data['user_id'];
 
-                    $fullStars  = floor($rating);
-                    $halfStar   = ($rating - $fullStars) >= 0.5 ? 1 : 0;
-                    $emptyStars = 5 - $fullStars - $halfStar;
+                $fullStars = floor($rating);
+                $halfStar = ($rating - $fullStars) >= 0.5 ? 1 : 0;
+                $emptyStars = 5 - $fullStars - $halfStar;
 
-                    echo "
+                echo "
                         <div class='card mb-3'>
                             <div class='card-body'>
                                 <div class='hearder d-flex justify-content-between'>
@@ -127,19 +128,19 @@
                                     <div class='starts'>
                                         <div class='film-rating'>
                                         ";
-                                            for ($i = 0; $i < $fullStars; $i++) {
-                                                echo '<i class="fas fa-star"></i>';
-                                            }
-                                        
-                                            if ($halfStar) {
-                                                echo '<i class="fas fa-star-half-alt"></i>';
-                                            }
-                                        
-                                            for ($i = 0; $i < $emptyStars; $i++) {
-                                                echo '<i class="far fa-star"></i>';
-                                            }
-                                        
-                                        echo " 
+                for ($i = 0; $i < $fullStars; $i++) {
+                    echo '<i class="fas fa-star"></i>';
+                }
+
+                if ($halfStar) {
+                    echo '<i class="fas fa-star-half-alt"></i>';
+                }
+
+                for ($i = 0; $i < $emptyStars; $i++) {
+                    echo '<i class="far fa-star"></i>';
+                }
+
+                echo " 
                                         </div>
                                     </div>
                                 </div>
@@ -152,18 +153,18 @@
                             </div>
                         </div>
                     ";
-                }
+            }
 
-                require_once('../components/footer.php');
+            require_once('../components/footer.php');
             ?>
         </div>
-        
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
 </body>
 
 </html>

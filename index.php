@@ -23,13 +23,13 @@
 
     function getMediaType($type) {
         if (strtolower($type) === "filmes") {
-            return "movie";
+            return 1;
         }
         else if (strtolower($type) === "animes") {
-            return "anime";
+            return 2;
         }
         else if (strtolower($type) === "séries" || strtolower($type) === "series") {
-            return "show";
+            return 3;
         }
         return "";
     }
@@ -61,7 +61,7 @@
             <h2 class="visually-hidden">Destaques</h2>
             <?php
 
-                $types = ['anime', 'movie', 'show'];
+                $types = [2, 1, 3];
 
                 foreach ($types as $type) {
                     
@@ -73,7 +73,7 @@
 
                     $id          = $results[0]['id'];
                     $name        = $results[0]['name'];
-                    $type        = $results[0]['type'];
+                    $type        = $results[0]['type_name'];
                     $genre       = json_decode($results[0]['genre'], true);
                     $cover       = $results[0]['cover'];
                     $duration    = formatarHora($results[0]['duration']);
@@ -82,7 +82,7 @@
                         echo "
                         <article class='col-md-4 highlight-card'>
                             <div class='card h-100'>
-                                <img src='$cover' class='card-img-top' alt='$name'>
+                                <img src='/assets/imgs/covers/$cover' class='card-img-top' alt='$name'>
                                 <div class='card-body'>
                                     <div class='d-flex justify-content-between align-items-center'>
                                         <div class='d-flex align-items-center'>
@@ -131,7 +131,7 @@
 
                         $id          = $key['id'];
                         $name        = $key['name'];
-                        $type        = $key['type'];
+                        $type        = $key['type_name'];
                         $genre       = json_decode($key['genre'], true);
                         $cover       = $key['cover'];
                         $rating      = $key['rating'];
@@ -168,7 +168,7 @@
                             </div>
                             <a href='#' class='d-block h-100 position-relative'>
                                 <div class='image-wrapper position-relative'>
-                                    <img src='$cover' alt='$name' class='w-100'>
+                                    <img src='/assets/imgs/covers/$cover' alt='$name' class='w-100'>
                                     <div class='position-absolute top-0 w-100 d-flex justify-content-between align-items-center p-1'>
                                         <span class='badge bg-light-subtle'>
                                             <i class='far fa-clock me-1'></i>

@@ -9,7 +9,8 @@ $audioVisual = new AudioVisual();
 
 $results = $audioVisual->selectLike($word);
 
-function formatarHora($valorFloat) {
+function formatarHora($valorFloat)
+{
     $horas = floor($valorFloat);
     $minutos = ($valorFloat - $horas) * 100;
 
@@ -31,7 +32,7 @@ function formatarHora($valorFloat) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Anicine</title>
+    <title>anicine</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -43,28 +44,30 @@ function formatarHora($valorFloat) {
 <body>
 
     <?php
-        require_once('../components/navbar.php');
+    require_once('../components/navbar.php');
     ?>
-    
+
     <div class="contaienr">
 
-        <h2 class="mt-4 mb-4 text-center">Resultados de pesquisa para: <?php echo $word ?></h2>
+        <h2 class="mt-4 mb-4 text-center">Resultados de pesquisa para:
+            <?php echo $word ?>
+        </h2>
 
         <div class="row">
-                <?php
-                foreach ($results as $result) {
+            <?php
+            foreach ($results as $result) {
 
-                    $id       = $result['id'];
-                    $name     = $result['name'];
-                    $genre    = json_decode($result['genre'], true);
-                    $cover    = $result['cover'];
-                    $duration = formatarHora($result['duration']);
+                $id = $result['id'];
+                $name = $result['name'];
+                $genre = json_decode($result['genre'], true);
+                $cover = $result['cover'];
+                $duration = formatarHora($result['duration']);
 
-                    $fullStars  = floor($result['rating']);
-                    $halfStar   = ($result['rating'] - $fullStars) >= 0.5 ? 1 : 0;
-                    $emptyStars = 5 - $fullStars - $halfStar;
+                $fullStars = floor($result['rating']);
+                $halfStar = ($result['rating'] - $fullStars) >= 0.5 ? 1 : 0;
+                $emptyStars = 5 - $fullStars - $halfStar;
 
-                    echo "
+                echo "
                         <article class='col-lg-3 col-md-4 col-sm-6 card-horizontal mb-4'>
                             <div class='d-flex justify-content-between align-items-center mb-1'>
                                 <div class='film-title fw-bold' title='asd'>
@@ -73,24 +76,24 @@ function formatarHora($valorFloat) {
                                 <div class='film-rating'>
                         ";
 
-                        for ($i = 0; $i < $fullStars; $i++) {
-                            echo '<i class="fas fa-star"></i>';
-                        }
-                    
-                        if ($halfStar) {
-                            echo '<i class="fas fa-star-half-alt"></i>';
-                        }
-                    
-                        for ($i = 0; $i < $emptyStars; $i++) {
-                            echo '<i class="far fa-star"></i>';
-                        }
+                for ($i = 0; $i < $fullStars; $i++) {
+                    echo '<i class="fas fa-star"></i>';
+                }
 
-                        echo "
+                if ($halfStar) {
+                    echo '<i class="fas fa-star-half-alt"></i>';
+                }
+
+                for ($i = 0; $i < $emptyStars; $i++) {
+                    echo '<i class="far fa-star"></i>';
+                }
+
+                echo "
                                 </div>
                             </div>
                             <a href='#' class='d-block h-100 position-relative'>
                                 <div class='image-wrapper position-relative'>
-                                    <img src='/$cover' alt='123' class='w-100'>
+                                    <img src='/assets/imgs/covers/$cover' alt='123' class='w-100'>
                                     <div class='position-absolute top-0 w-100 d-flex justify-content-between align-items-center p-1'>
                                         <span class='badge bg-light-subtle'>
                                             <i class='far fa-clock me-1'></i>
@@ -99,13 +102,13 @@ function formatarHora($valorFloat) {
                                         <div class='d-flex'>
                         ";
 
-                        if (isset($genre['generos']) && !empty($genre['generos'])) {
-                            foreach ($genre['generos'] as $genero) {
-                                echo '<span class="badge bg-primary me-1">' . $genero['genero'] . '</span>';
-                            }
-                        }
+                if (isset($genre['generos']) && !empty($genre['generos'])) {
+                    foreach ($genre['generos'] as $genero) {
+                        echo '<span class="badge bg-primary me-1">' . $genero['genero'] . '</span>';
+                    }
+                }
 
-                        echo "
+                echo "
                                         </div>
                                     </div>
                                     
@@ -121,20 +124,18 @@ function formatarHora($valorFloat) {
                             </a>
                         </article>
                         ";
-                }
-                
-                ?>
+            }
+
+            ?>
         </div>
     </div>
 
     <?php
-        require_once('../components/footer.php');
+    require_once('../components/footer.php');
     ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous">
-    </script>
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+        </script>
 
 </body>
-
