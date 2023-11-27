@@ -95,10 +95,6 @@ $isCurrentUser = $_SESSION['user_id'] === $id ? true : false;
 
 
                 </div>
-                <!-- <h3>Redes Sociais</h3>
-                <p><i class="fab fa-facebook"></i> Facebook</p>
-                <p><i class="fab fa-instagram"></i> Instagram</p>
-                <p><i class="fab fa-twitter"></i> Twitter</p> -->
                 <h3>Bio</h3>
 
                 <p id="bio-show">
@@ -107,11 +103,12 @@ $isCurrentUser = $_SESSION['user_id'] === $id ? true : false;
 
                 <form action='../../api/operations/userOperation.php' method='post'>
                     <input type="hidden" name="user_id" value='<?php echo $user['id'] ?>'>
-                    
-                    <textarea class="form-control" id="bio-textarea" rows="4" placeholder="Escreva seu comentário aqui" name="bio" style="display:none;" required
-                    ><?php echo $user['bio'] ?></textarea>
 
-                    <button type="submit" id="save-button" style="display: none;" name="editBio" class="btn btn-primary mt-2">Salvar</button>
+                    <textarea class="form-control" id="bio-textarea" rows="4" placeholder="Escreva seu comentário aqui"
+                        name="bio" style="display:none;" required><?php echo $user['bio'] ?></textarea>
+
+                    <button type="submit" id="save-button" style="display: none;" name="editBio"
+                        class="btn btn-primary mt-2">Salvar</button>
                 </form>
 
                 <?php
@@ -120,7 +117,7 @@ $isCurrentUser = $_SESSION['user_id'] === $id ? true : false;
                 }
                 ?>
 
-                
+
             </div>
 
             <!-- Comentários e favoritos -->
@@ -207,7 +204,7 @@ $isCurrentUser = $_SESSION['user_id'] === $id ? true : false;
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
-        </script>
+            </script>
 
         <script>
             function editBio() {
