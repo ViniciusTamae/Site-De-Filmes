@@ -172,7 +172,7 @@ $isCurrentUser = $_SESSION['user_id'] === $id ? true : false;
 
                         echo "
                                 <div class='col-md-4'>
-                                <img src='/$cover' alt='Filme 1' class='img-thumbnail mx-auto d-block' style='height: 400px; width: 400px; object-fit: cover;'>
+                                <img src='/assets/imgs/covers/$cover' alt='Filme 1' class='img-thumbnail mx-auto d-block' style='height: 400px; width: 400px; object-fit: cover;'>
                                     <div class='d-flex justify-content-between'>
                                         <p class='mb-0'>$name</p>
                                         <span class='float-end'>";
